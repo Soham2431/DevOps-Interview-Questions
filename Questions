@@ -1,4 +1,28 @@
 ==========
+NovaTekno Pune
+==========
+
+jenkins there are pipelines 
+if dev commits the code dev then dev pipeline needs to trigger 
+if dev commits the code to qa then QA pipeline needs to trigger please write the logic for it in jenkins?
+
+is it possible to trgger qa pipelinedirectly if they created bugs to fix and now directly wants to run qa pipeline only ?
+how you take backup of jenkins ? which folder do you use to take backup ?
+if i want use that in one ec2 jenkins backup folder in another ec2 instance where jenkins is there how can do that ?
+
+
+
+what are instance types ?
+i am unable to login into ec2 instance ? how to fix ?
+instance a in vpc a and instance b vpc b i created peering in vpc a and b but instance a connect to b but b cannot connot connect a how to fix it ?
+there is an private instance i want login into it how can i do that ?
+there is databse i want login it securely what are paramets will u consider ?
+what is diff betn gateway lb and network lb ?
+there is a lb and what to create a domain name of that how can i do this ?
+if i want to find out the miscel  lenious user login into my ec2 account how can i do that ?
+if i want to check my logs of ec2 instance how can i do that without using cloudwatch vpc logs prometheus grafana as well ? 
+
+==========
 Securly 
 ==========
 FROM mavne:3.8.5-openjdk-11-slim AS build
