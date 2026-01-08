@@ -1,0 +1,127 @@
+=======================
+EKS Upgrade Experience
+=======================
+
+1. Have you performed EKS cluster upgrades?
+2. From which Kubernetes versions to which versions have you upgraded?
+3. Which environments were involved (Prod /QA/UAT / Dev)?
+4. What challenges did you face and how did you resolve them?
+
+==============================
+Persistent Volume Claims (PVC)
+==============================
+
+1. What is a PVC and why is it used? 
+2. What PVC-related issues have you faced?
+3. How do you monitor, resize, and protect PVC data?
+
+==============================
+Memory Requests & Limits
+==============================
+
+1. What are requests and limits?
+2. What memory-related production issues have you faced?
+3. How do you tune and prevent OOM and evictions?
+
+==============================
+Deployment & Release Management
+==============================
+
+1. What deployment strategies have you used (Rolling, Blue-Green, Canary)? 
+2. What deployment issues have you handled?
+
+==============================
+Kubernetes Core Concepts Network Policies & Pod Security
+==============================
+
+1. Have you implemented pod/namespace isolation? and How 
+2. How did you restrict frontend backend DB traffic?
+
+==============================
+Kubernetes Security Practices
+==============================
+
+1. How do you manage RBAC and IAM?
+2. How are secrets and certificates managed?
+
+==============================
+Security Tools Knowledge
+==============================
+
+1. Black Duck, Trivy, SonarQube, Snyk, OWASP ZAP experience
+2. CI/CD integration?
+
+==============================
+AWS Cloud Services
+==============================
+Explain experience with:
+
+ECS, EKS
+VPC, EC2, Lambda
+S3, Route 53
+KMS, Secrets Manager, Certificate manager, CloudWatch, CloudTrail
+
+==============================
+CI/ CD Tools:
+==============================
+
+Jenkins, pipeline experience 
+Pipeline ownership and design 
+
+==============================
+GitOps & Automation:
+==============================
+
+MongoDB
+Elasticsearch/Opensearch
+Kibana 
+
+==============================
+CI/CD Flow & Security
+==============================
+
+1. Explain CI/CD flow
+2. Where are SAST & DAST implemented?
+
+==============================
+Kubernetes Commands, YAML & Pipeline
+==============================
+
+1. Write kubectl commands
+2. Write Deployment YAML
+3. Write Jenkins Declarative Pipeline
+4. Share a real time use case to write shell script
+
+==============================
+Three-Tier Architecture on EKS
+==============================
+
+1. Explain your 3-tier architecture deployment 
+2. How did you manage secrets, networking, security groups, scaling, and traffic?
+
+==============================
+Ingress Controllers & Traffic Management
+==============================
+
+1. NGINX, HAPCOXY, Envoy, ALB/NLB usage
+2. SSL, WAF, routing, rate limiting
+
+==============================
+Monitoring & Incident Handling
+==============================
+
+1. Prometheus, Grafana, CloudWatch
+2. How do you handle production incidents?
+
+==============================
+Role & Responsibility
+==============================
+
+1. Are you an Individual Contributor, Team Lead, or both?
+2. What were your Day to day responsibilities 
+3. Have you mentored team members or owned production systems end-to-end?
+4. Which strategies have you used to optimize infrastructure utilization and control costs?
+
+==============================
+-----------| END |------------
+==============================
