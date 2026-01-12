@@ -1,4 +1,34 @@
 ==========
+Hi-Labs
+==========
+Q1. There is an application receiving millions of requests.
+My system capacity is to handle 50,000 requests per second, but the incoming traffic is 1,000,000 requests per second.
+How can this be handled?
+
+Q2. There is an application running with two pods.
+Each pod has a capacity to handle 50,000 requests, but one pod is receiving 70,000 requests and is crashing.
+How can we fix this and ensure traffic is distributed to the other pod?
+
+Q3. If a version of an object is deleted from an S3 bucket and versioning is enabled, how can you recover it?
+
+Q4. If all versions of an object (Terraform state file) are deleted from an S3 bucket, how can you recover the state file?
+
+Q5. Initially, if the Terraform state file is stored locally, how do you create an S3 bucket for remote backend storage?
+
+Q6. How do you maintain the Terraform state file in a team environment?
+
+Q7. How do you upload a file from an EC2 instance to an S3 bucket?
+
+Q8. There are Node A and Node B, both tainted.
+Pod 1 has toleration A
+Pod 2 has toleration B
+There is another node that is not tainted
+One pod does not have any toleration
+Which Kubernetes component prevents the pod without toleration from running on the tainted node?
+
+Q9.Write a Python program to reverse a string without using any built-in functions.
+
+==========
 NovaTekno Pune
 ==========
 
