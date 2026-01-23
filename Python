@@ -13,6 +13,12 @@
 3️⃣ Given List = [12,18,65,17,98,56], 
 find the largest number
 
+4️⃣ data = [[1,2,4],[3,5],[6,8,10]]
+output = [6,0,24]
+
+5️⃣ reverse the sring without bilt in functions
+string = "Soham"
+
 ---
 
 🔹 AWS Automation with Python (boto3)
