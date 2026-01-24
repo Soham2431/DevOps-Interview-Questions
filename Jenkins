@@ -1,0 +1,102 @@
+USER MANAGEMENT
+
+LDAPS == for HTTPS secure way access by usinh certificate manager
+
+then we have to create files like 
+base.ldif == what action we have to create like users groups 
+users.ldif == user name ans pass
+groups.ldif == groups 
+
+then go to jenkins manage jenkins security - select LDAPS - add ip of ldaps or jenins server - add groups - appy proper permission like read view build logs view 
+
+
+==============================================================
+✅ Jenkins User Management using LDAP / LDAPS (Correct Explanation)
+🔹 What is LDAPS?
+
+LDAP over SSL/TLS
+Secure authentication using certificates
+Uses port 636
+Preferred over plain LDAP (389)
+
+❌ Important correction (VERY IMPORTANT)
+
+👉 You do NOT create base.ldif, users.ldif, groups.ldif on Jenkins
+
+Those LDIF files are created on the LDAP server, NOT Jenkins.
+They are used to:
+Create users
+Create groups
+Define relationships (user ↔ group)
+
+Examples:
+
+users.ldif → user entries
+groups.ldif → group entries
+base.ldif → base DN structure
+
+✔️ This is LDAP admin work, not Jenkins work.
+
+🟢 Correct Jenkins-side configuration steps
+1️⃣ Configure LDAP / LDAPS in Jenkins
+
+Go to:
+
+Manage Jenkins → Security → Configure Global Security
+
+Under Security Realm:
+
+Select LDAP
+Enable Use SSL (LDAPS)
+
+2️⃣ Provide LDAP details
+
+You configure:
+
+LDAP server IP / hostname
+Port: 636
+Root DN
+dc=example,dc=com
+
+
+User search base:
+ou=users
+Group search base:
+ou=groups
+
+LDAP bind DN (service account)
+
+LDAP bind password
+Upload / trust LDAP SSL certificate (via JVM keystore)
+
+3️⃣ Test LDAP connection
+
+✔️ Jenkins provides Test LDAP Settings
+Always mention this in interviews.
+
+4️⃣ Configure Authorization (Permissions)
+
+Go to Authorization section:
+Common options:
+Matrix-based security
+Role-based authorization strategy (recommended)
+
+5️⃣ Assign permissions to LDAP users/groups
+
+Example permissions:
+Overall → Read
+Job → Build
+Job → Read
+Job → View
+Job → Workspace
+View → Read
+Logs → View
+
+👉 Permissions are mapped to LDAP groups, not individual users (best practice).
+
+🟢 Interview-ready corrected answer (Short & Perfect)
+
+“Jenkins user management is done using LDAP or LDAPS. User and group creation is handled on the LDAP server using LDIF files. In Jenkins, we configure LDAP under Global Security, enable LDAPS for secure 
+authentication, provide LDAP server details, and then use matrix or role-based authorization to assign permissions to LDAP groups.
+
+======================================================
