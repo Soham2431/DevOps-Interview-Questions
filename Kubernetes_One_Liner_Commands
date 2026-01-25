@@ -1,6 +1,3 @@
-Here’s a ready-to-use set of one-liner commands to generate all the common Kubernetes YAML manifests. Each one will create a .yaml file that you can later edit and apply.
-
-
 ---
 
 🔹 1. Deployment
