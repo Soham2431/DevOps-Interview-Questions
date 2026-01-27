@@ -1,6 +1,6 @@
 USER MANAGEMENT
 
-LDAPS == for HTTPS secure way access by usinh certificate manager
+LDAPS == for HTTPS secure way access by using certificate manager
 
 then we have to create files like 
 base.ldif == what action we have to create like users groups 
