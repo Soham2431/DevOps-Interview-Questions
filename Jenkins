@@ -96,7 +96,8 @@ Logs → View
 
 🟢 Interview-ready corrected answer (Short & Perfect)
 
-“Jenkins user management is done using LDAP or LDAPS. User and group creation is handled on the LDAP server using LDIF files. In Jenkins, we configure LDAP under Global Security, enable LDAPS for secure 
-authentication, provide LDAP server details, and then use matrix or role-based authorization to assign permissions to LDAP groups.
+"Jenkins user management is done using LDAP or LDAPS. User and group creation is handled on the LDAP server using LDIF files. In Jenkins, we configure LDAP under 
+Global Security, enable LDAPS for secure authentication, provide LDAP server details, and then use matrix or role-based authorization to assign permissions to 
+LDAP groups."
 
 ======================================================
