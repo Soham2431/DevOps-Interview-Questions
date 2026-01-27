@@ -7,7 +7,7 @@ base.ldif == what action we have to create like users groups
 users.ldif == user name ans pass
 groups.ldif == groups 
 
-then go to jenkins manage jenkins security - select LDAPS - add ip of ldaps or jenins server - add groups - appy proper permission like read view build logs view 
+then go to jenkins manage jenkins security - select LDAPS - add ip of ldaps or jenins server - add groups - apply proper permission like read view build logs view 
 
 
 ==============================================================
