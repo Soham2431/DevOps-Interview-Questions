@@ -17,6 +17,14 @@ print(three_digit)
 2️⃣ a = [167,12,"Sam",45,"Max",286,"Tom"]
 
 * Fetch only integers from this list
+--->
+a = [167,12,"Sam",45,"Max",286,"Tom"]
+integers = []
+for i in a:
+    if isinstance(i, int):
+        integers.append(i)
+print(integers)
+
 * Fetch the second largest number
 
 3️⃣ Given List = [12,18,65,17,98,56], 
