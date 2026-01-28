@@ -3,6 +3,15 @@
 1️⃣ a = [10,18,123,165,19,199]
 
 * Fetch all three-digit numbers from the list
+--->
+a = [10,18,123,165,19,199]
+
+three_digit = []
+for i in a:
+    if 99 < i < 1000:
+        three_digit.append(i)
+print(three_digit)
+
 * Fetch the second largest number
 
 2️⃣ a = [167,12,"Sam",45,"Max",286,"Tom"]
@@ -12,9 +21,24 @@
 
 3️⃣ Given List = [12,18,65,17,98,56], 
 find the largest number
+--->
+data = [1,2,4,3,5,6,8,10]
+largest = 0
+for i in data:
+    if i > largest:
+        largest = i
+print(largest)
 
 4️⃣ data = [[1,2,4],[3,5],[6,8,10]]
 output = [6,0,24]
+---> 
+for sublist in data:
+    total = 0
+    for num in sublist:
+        if num % 2 == 0:
+            total += num
+    result.append(total)
+print(result)
 
 ---
 
@@ -29,13 +53,54 @@ output = [6,0,24]
 🔹 Strings & Algorithms
 
 7️⃣ Write a script to reverse a string without using built-in functions.
+--->
+a = 'this is jerry'
+rev = ''
+for i in a:
+    rev = i + rev
+print(rev)
+
 8️⃣ a = "This is Jerry" → Find the concurrency (word frequency/count).
+--->
+a = "hello world"
+for ch in set(a):
+    if ch != " ":
+        print(ch, ":", a.count(ch))
 
 ---
 
 🔹 Extra Tricky Ones (commonly asked)
 
 9️⃣ Write a Python script to check if a given string is a palindrome.
+--->
+s = "madam"
+rev = ""
+
+for ch in s:
+    rev = ch + rev
+
+if s == rev:
+    print("Palindrome")
+else:
+    print("Not Palindrome")
+
 🔟 Write a script to find the first non-repeated character in a string.
+
 1️⃣1️⃣ Write a script to sort a dictionary by values.
+--->
+d = {'a': 3, 'b': 1, 'c': 2}
+
+sorted_dict = dict(sorted(d.items(), key=lambda x: x[1]))
+
+print(sorted_dict)
+
 1️⃣2️⃣ Given a log file, write a script to count number of ERROR entries.
+--->
+count = 0
+
+with open("app.log", "r") as file:
+    for line in file:
+        if "ERROR" in line:
+            count += 1
+
+print("ERROR count:", count)
