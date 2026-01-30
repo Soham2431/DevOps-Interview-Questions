@@ -1,3 +1,60 @@
+du -sh /var/* | sort -h head +10 
+
+
+#! /bin/bash
+
+SERVISE = "Ngnix"
+STATUS = $(sytemctl status nginx | grep "running")
+
+if [$SERVISE 
+
+
+How your ci cd is look like in your org?
+How sonar will you Call in jenkins ?
+How nexus will you call in jenkins ?
+How will you stop jenkins stages to execute when the sonar stage failed ?
+There is an artifact i want deploy it to different env how can do it via jenkins automation?
+Instead of selecting env in parameter based pepeline how can i to it automatically so jenkins knows when dev dev commits to that specific repo or branch that pipeline should run ?
+How env promotion has been done in your org from dev to qa to preprod and then prod ?
+I just want deploy a application via jenkins on ec2 instance how will do it ?
+Witount gitops how will you deploy app to k8s cluster ?
+What is gitops ?
+and uses of gitops ?
+
+
+What is multistage builds ?
+How you will know the multistage reduced the size of image is this ?
+What is multistage builds in docker ?
+Can you write ultistage buillds dockefile ?
+Container can talk with each other in docker ? 
+cmd entrypoint diff and in which case you use cmd and when will you use entrypoint ?
+
+
+Fetch top 10 largest files from /var folder 
+There is an instance i enabled port 80 & sg nacl are also fine still i am unable to access the ec2 how will fix this ?
+Write shell script to check a service is running or not ?
+
+
+There is an s3 bucket i given bucket access to dev they uploaded files having 300 mb 400 mb and 700 mb but after 2-3 weeks i got a lot of bills so what misconfiguration has been 
+done there due this i got a lot of billing ?
+There is an adatbased instace which is in pivate sub i want to give a secure access to that dev to access it how can i do it ?
+There is ec2 in vpc a and there is another ec2 which is in vpc b how can make communication betn these instances ?
+There are vpc a , b ,c i enables peering connection betn vpc a and vpc b and peering connection betn vpc b and vpc c so shall vpc a communicates with vpc c ? is no then why?
+What is vpc transit gateway ?
+
+
+What is terragaunt and what is te diff bten terraform and  terragaunt?
+What is remote provisioner and local provisioners?
+Someone from your team is trying to create resources but whenever he applies the existing resources are getting deleted so avoid this what will you do to fix this issue ?
+What is modules in terraform ?
+What will you deploy or create resources in diff env like dev qa or prod ?
+
+
+What is rebase in git ?
+what is the diff betn git merge and git rebase ?
+
+
+==============================================================
 USER MANAGEMENT
 
 LDAPS == for HTTPS secure way access by using certificate manager
