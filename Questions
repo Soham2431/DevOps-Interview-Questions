@@ -49,7 +49,7 @@ there is an private instance i want login into it how can i do that ?
 there is database i want login it securely what are parameters will u consider ?
 what is diff betn gateway lb and network lb ?
 there is a lb and what to create a domain name of that how can i do this ?
-if i want to find out the miscel  lenious user login into my ec2 account how can i do that ?
+if i want to find out the miscellaneous user login into my ec2 account how can i do that ?
 if i want to check my logs of ec2 instance how can i do that without using cloudwatch vpc logs prometheus grafana as well ? 
 
 ==========
