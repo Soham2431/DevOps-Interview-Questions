@@ -12,3 +12,27 @@ ClusterIP = internal only. Backend services should almost always be ClusterIP. I
 port vs targetPort — port is what callers use (service port), targetPort is what the container actually listens on. They can be different.
 If the service shows Endpoints: <none>, the selector label doesn't match — that's the most common misconfiguration.
 Across namespaces use the full FQDN: backend-svc.other-namespace.svc.cluster.local.
+
+===================================
+** Lets take you have given a task to upgrade a k8s cluster from 1.34 to 1.35 what all things will you keep in mind while planning this ? 
+how will you implement them ? **
+
+---> To upgrade the Kubernetes cluster from version 1.34 to 1.35, first I will verify the current Kubernetes version and review the upgrade documentation or 
+internal upgrade template/release notes prepared by the organization. I will carefully check for deprecated APIs, compatibility issues, and supported versions of 
+components like CNI, ingress controller, CSI drivers, monitoring tools, and CI/CD integrations.
+
+Before starting the upgrade, I will first test the process in lower environments such as Dev or UAT to avoid production issues. I will also take necessary backups 
+like etcd backup, Kubernetes manifests, Helm values, secrets, and important application configurations to ensure rollback readiness.
+
+For implementation, I will start with the Kubernetes control plane/master nodes first because the control plane version should always be ahead of worker nodes. 
+Once the control plane upgrade is successful and validated, I will proceed with worker node upgrades one by one.
+
+During worker node upgrade:
+
+* I will cordon the node to stop new pod scheduling
+* Then drain the node safely to evict workloads
+* Upgrade kubelet/kubeadm and required packages
+* Restart services and validate node health
+* Finally uncordon the node to bring it back into scheduling
+
+===================================
