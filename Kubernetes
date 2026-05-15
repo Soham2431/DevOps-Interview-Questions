@@ -1,0 +1,14 @@
+Q. How Fronend pods talks to backend pods in K8s?
+
+---> The entire trick is the label-selector relationship. The backend Deployment stamps every pod it creates with app: backend. The backend Service has 
+selector: app: backend. Kubernetes continuously watches all pods and builds an Endpoints list — any pod matching that label gets added automatically. 
+kube-proxy then installs iptables rules so any traffic hitting the ClusterIP gets DNAT'd to one of those pod IPs.
+The frontend never talks to a pod IP directly. It calls http://backend-svc:8080 — a DNS name. CoreDNS (running as a pod in kube-system) resolves that name 
+to the ClusterIP. The ClusterIP is stable forever, even if every backend pod restarts and gets new IPs.
+
+** Key things to remember for your interview: **
+
+ClusterIP = internal only. Backend services should almost always be ClusterIP. If you accidentally make it LoadBalancer, you're exposing your backend to the internet.
+port vs targetPort — port is what callers use (service port), targetPort is what the container actually listens on. They can be different.
+If the service shows Endpoints: <none>, the selector label doesn't match — that's the most common misconfiguration.
+Across namespaces use the full FQDN: backend-svc.other-namespace.svc.cluster.local.
