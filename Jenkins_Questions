@@ -1,0 +1,125 @@
+### NovaTekno Pune
+
+* In jenkins there are pipelines
+* if dev commits the code dev then dev pipeline needs to trigger
+* if dev commits the code to qa then QA pipeline needs to trigger please write the logic for it in jenkins?
+* is it possible to trigger qa pipeline directly if they created bugs to fix and now directly wants to run qa pipeline only ?
+* how you take backup of jenkins ?
+* which folder do you use to take backup ?
+* if i want use that in one ec2 jenkins backup folder in another ec2 instance where jenkins is there how can do that ?
+
+---
+
+### Vodafone
+
+* What are the CI CD tools you are using
+* Is your Jenkins is different on different account in EC2 or same like it installed in same EC2 which used for different env?
+* How will configure Jenkins to talk with other services in AWS so we can able to required activities over there ?
+
+---
+
+### Intellect Design Arena
+
+* In jenkins how you have stramlined pipelines as you mentioned in resume ?
+* write jenkins ci pipeline?
+
+---
+
+### Valere Labs
+
+* there is an java app i want deploy it on ec2 without docker and kubertes how will you setup jenkins ci cd for that?
+* now i want to deploy it via docker without k8s how will you setup jenkins ci cd for that?
+* now i want to deploy 20 microservices with helps of docker how will you setup jenkins ci cd for that? how will you make communication between them?
+* now i want to deploy 20 microservices with help of k8s how will you setup jenkins ci cd for that?
+* now i want to deploy 20 microservices with help of eks how will you setup jenkins ci cd for that?
+* as you mentioned earlier like you are writing separte pipeline for each microservice tommorow i hvae to write 10000 microservices shall i need to write seperate ci cd for the same or any option to avoid this?
+
+---
+
+### HCL Tech
+
+* how you setup argo for multiple environment
+* lets take in ci cd jenkins there is an sectret stored in secret manager when he is doing $something he gets a sectret in output which is not acceptable how you can fix it and what is drawbacks of this?
+
+---
+
+### Infosys
+
+* Jenkins CI CD
+* Jenkins CI CD stages
+* How pipeline trigger automatically
+* How the flow of u r CI CD
+* What are the env are there
+* I want to know the entire flow from dev to QA to preprod to prod
+* What are issues u have faced while working on Jenkins
+* If Jenkins pipeline fails in build stage how you will trouble shoot?
+* Maven repo related scenarios questions?
+
+---
+
+### Inferyx
+
+* Write a Jenkins declarative pipeline to build a Maven project, run tests, and deploy if the tests pass.
+
+---
+
+### Amdocs
+
+* could u explain the entire flow of your ci cd pipleine ?
+* where dev write the code how he will commit it then how pipline trigger like i want to know which branch he will commit the how he will commt te and jenkins pipeline runs ?
+
+---
+
+### RapiPay
+
+* How will you deploy microservices via jenkins ci cd
+* write jenkins file
+* how you will rollback in jenkins
+* Let's take there are three services that is loadbalacer -> 1.txt 2.ums 3.report now i have created same loadbalacer -> 1.txt 2.ums 3. report 1.txt 2.ums 3.report second one is new version i want to create a pipeline for that new version could you tell me how you will write jenkinsfile for this
+
+---
+
+### Country Delight
+
+* If piplene is failing checkout stage how will you fix it ?
+
+---
+
+### Broadridge
+
+* What is CI ?
+* Why we use jenkins If we can do everything on local ?
+* What are jenkins plugins you are using in your projects ?
+* What is plugins ?
+
+---
+
+### One2N
+
+* CI CD is different in ur project ?
+* Did you do only one time jar file in maven in ci cd also you are doing it docker file ?
+
+---
+
+### Common Jenkins Topics Repeated Across Interviews
+
+* Jenkins Architecture
+* Master and Agent
+* Jenkins Backup & Restore
+* Jenkinsfile (Declarative & Scripted)
+* Multibranch Pipelines
+* Webhooks
+* Branch-based Pipeline Triggering
+* CI/CD Workflow End-to-End
+* Jenkins Shared Libraries
+* Jenkins Credentials Management
+* Jenkins Plugins
+* Troubleshooting Failed Pipelines
+* Rollback Strategies
+* Maven Build Integration
+* Docker Integration
+* Kubernetes/EKS Deployment through Jenkins
+* Microservices CI/CD Design
+* Jenkins with AWS Services (ECR, EKS, S3, EC2, IAM)
+* Jenkins Secrets Handling
+* Jenkins Pipeline for Multiple Environments (Dev → QA → PreProd → Prod)
