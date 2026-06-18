@@ -1,3 +1,59 @@
+### Hi-Labs
+
+* Write a Python program to reverse a string without using any built-in functions. 
+
+---
+
+### Securly
+
+```python
+def add_item(item, target=[]):
+     target.append(item)
+     return target
+
+print(add_item(1))
+print(add_item(2))
+print(add_item(3))
+```
+
+* what is the output of this
+* [1]
+* [1,2]
+* [1,2,3] 
+
+---
+
+### Vodafone
+
+* R u comfortable with python
+* What are the tasks you have done using python? 
+
+---
+
+### Inferyx
+
+* Write a Python script that:
+
+  * Lists all EC2 instances in a given region.
+  * Filters instances by running state.
+  * Prints instance ID, type, and public IP. 
+
+---
+
+### TSYS Round 2
+
+* Python code a = [12, 666, 78, 90, 1, 5, 197] fetch only two degit num from this with the help of array ? 
+
+---
+
+### Broadridge
+
+* Write a script to reverse the string ?
+* Write a Python script to find concurrency in mentioned array (this is soham) ?
+* Write a Python script to find out large number from a list ( list = [12,14,16,18] ) ? 
+
+===============================================================
+
 🔹 List & Number Manipulation
 
 1️⃣ a = [10,18,123,165,19,199]
