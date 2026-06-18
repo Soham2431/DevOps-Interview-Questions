@@ -1,1 +1,122 @@
+**Hi-Labs**
+- Q3. If a version of an object is deleted from an S3 bucket and versioning is enabled, how can you recover it?
+- Q4. If all versions of an object (Terraform state file) are deleted from an S3 bucket, how can you recover the state file?
+- Q5. Initially, if the Terraform state file is stored locally, how do you create an S3 bucket for remote backend storage?
+- Q7. How do you upload a file from an EC2 instance to an S3 bucket?
+
+**NovaTekno Pune**
+- what are instance types ?
+- i am unable to login into ec2 instance ? how to fix ?
+- instance a in vpc a and instance b vpc b i created peering in vpc a and b but instance a connect to b but b cannot connot connect a how to fix it ?
+- there is an private instance i want login into it how can i do that ?
+- there is database i want login it securely what are parameters will u consider ?
+- what is diff betn gateway lb and network lb ?
+- there is a lb and what to create a domain name of that how can i do this ?
+- if i want to find out the miscellaneous user login into my ec2 account how can i do that ?
+- if i want to check my logs of ec2 instance how can i do that without using cloudwatch vpc logs prometheus grafana as well ?
+
+**Securly**
+- in terraform there is an ec2 where templete is written for qa without duplication how can i do that in different env dev prod
+
+**Vodaphone**
+- How you will HA architecture on AWS
+- VPC endpoint
+- There is S3 bucket in ac1 how will access EC2 in ac2
+- There is an EC2 which is in private subnets how will access it?
+- With SSM how will access like how you will configure it so we can able to do it in SSM?
+- Diif betn endpoint and private link ?
+- IAM role and IAM use difference
+- How many accounts are you using
+- Is your Jenkins is different on different account in EC2 or same like it installed in same EC2 which used for different env?
+- How will configure Jenkins to talk with other services in AWS so we can able to required activities over there ?
+- VPC end point and private link difference
+- What we NAT Gateway
+- How you access EC2 in private sub?
+- How you connect EC2 in private sub ?
+
+**INFINITE (2nd entry)**
+- rote53 to record domain with dns with load balancer dns?
+
+**L2**
+- what is egress and ingress ?
+- there is an ec2 i want tocreate what areiput parametrs will you consider while creating ec2 by using terraform?
+- will you create new SG of use existing one ?
+- what is authorization in IAM ?
+- there are two accouns ac1 and ac2 how you wil connect with each other to access the resources? I said IAM role with assume the role in account1
+- You have an EBS volume of type gp3 attached to your EC2 instance, and now you want to change it to io1. How will you do that? Will it create a new volume, or will your data remain as it is?
+- what is subnets?
+- how you can create node group while creating eks?
+- what is KMS?
+- why we use KMS what is the use of KMS?
+
+**Intellect Design Arena**
+- i am unable to pull image from ecr ? pass is correct creditals coreect everything is correct stil i am unable to fetch it hhow do you fix it ?
+- what is vpc ?
+- what is public private subnet?
+- private subnet has IGW or natGateway access ?
+- what is the use of nat gate way and internet gateway?
+
+**Valere Labs**
+- there is an java app i want deploy it on ec2 without docker and kubertes how will you setup jenkins ci cd for that?
+- we have ec2 s3 rds which modules you are using what will be structure of that modules just give me overview?
+
+**HCL Tech**
+- if i want run specific commands during creation of ec2 how can do that with or without terraform
+- eks version u r using
+- s3 cores means
+- when we create LB what are the other componenets requred
+- what are the types of policies in dns
+- how to transfer ebs from one zone to another
+- what is gateway load balancer
+
+**inferyx**
+- 3. Write a Terraform configuration to provision an EC2 instance in a specific VPC and subnet, and attach a security group that allows SSH access.
+- 6. Write a Python script that: Lists all EC2 instances in a given region. Filters instances by running state. Prints instance ID, type, and public IP.
+- 7. Write a simple CloudFormation template to: Create a VPC with one public subnet. Launch an EC2 instance in the subnet. Add outputs for the subnet ID and instance ID.
+
+**Amdocs**
+- write trafform code for ec2 and provider as well?
+
+**TSYS**
+- *(Round 1)* Let's say. I nave deployed API in Kubernetes... it is currently running in the AWS. That is a private. Your private VPC... A load balancer. You have created in that is AWS component... Okay. Now let's say you have created a, what kind of Like in Route, 53 water. All the things, you will provide for that.
+- *(Round 2)* Types of load balacers ? Diff ALB and NLB when to use ALB when to NLB ?
+- *(Round 2)* You are DB application is in private sub how will you expose it to internet so he can talk with internet but request can not be comes from interet to db ?
+
+**RapiPay**
+- AWS three tier architecture
+- securely configuration related to ec2 or s3
+- s3 types
+- s3 lifecycle
+- RDS
+- lamda
+- how you will create user in RDS
+
+**country delight**
+- There is an account a which contain ec2 and there is an account b which contain rds i want to connect it to ec2 in account a can we do that if yes then how if no then why?
+- NACL vs SG
+
+**AgiliDEA**
+- You have aws accound someone give you secrete acceess keys now there is an requirement u need to create ec2 instace whose name is instance one and region is ohio now you have to create ec2 instace via tf file how will u do it ?
+
+**Royal Cyber**
+- In EBS what is the size oF block 10 gb of ebs volume?
+
+**Deloitte**
+- Let's say there's an application deployed in AWS, and we want it to be highly available. How can we achieve high availability ?
+- Let's take a scenario: I am creating an EC2 instance and attaching it to a VPC. How can I ensure the VPC is created first and then the EC2 instance? / How do you ensure that a VPC is created before an EC2 instance in AWS using Terraform ?
+
+**Broadridge**
+- Let's takes example I have installed application in EC2 instance how you forward the log to the cloud watch ?
+- Write a python programme which retrives ebs volume from AWS ?
+- How to take backup of EC2 instance through automation ?
+- How to send image to ECR on specific repository ? ---> docker push <account-id>.dkr.ecr.<region>.(link unavailable)<repository-name>:<image-tag>
+
+**Maruti Tech Labs**
+- vpc end points ?
+- route53 - policy types and how we check health check ?
+- There are different env like dev and staging there are modules of each resource if i want run my ec2 with duplication on terraform shall i do that?
+
+**(Final unnamed section)**
+- I have deployed my application on ec2 instance and it's giving me 500 when user trying acces it via url name
+- terraform there is an ebs there are different env dev env and staging env now i am doing terraform plan but changing the tag of that ebs how will you fix it
 
