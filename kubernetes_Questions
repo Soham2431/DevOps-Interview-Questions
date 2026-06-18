@@ -1,0 +1,207 @@
+### Hi-Labs
+
+* There are Node A and Node B, both tainted.
+  Pod 1 has toleration A
+  Pod 2 has toleration B
+  There is another node that is not tainted
+  One pod does not have any toleration
+  Which Kubernetes component prevents the pod without toleration from running on the tainted node?
+
+---
+
+### Infinite
+
+**Kubernetes**
+
+* k8s architecture
+* if nodes are consuming lot of space how will check it ?
+* if a node is down in k8s how will you check it and troble shoot it ?
+* what is container runtime?
+* how to check the containers are running or not in k8s?
+* services in k8s?
+* what is the use of nodeport svc?
+* if there is a pod i want to expose it to externally outside cluster to another service how can i do that?
+
+---
+
+### INFINITE
+
+* kubernetes
+* there is an pods running state but user cannot access it getting 503 error how to fix it ?
+* helm
+* there is an application i have deployed but when we apply it it geeting in stuck state how to fix it ?
+* node affinity antiaffinity diff
+* k8s load balancer vs ingress vs appliction load balancer?
+
+---
+
+### L2
+
+* there is an ingress which is not routing correctly how will troubleshoot it in ingress?
+* what are the svc types in k8s?
+* what are the best security practices in k8s?
+* what is init conatiner?
+* what r the components in node ?
+* how you can create node group while creating eks?
+
+---
+
+### Valere Labs
+
+* now i want to deploy 20 microservices with help of k8s how will you setup jenkins ci cd for that?
+* now i want to deploy 20 microservices with help of eks how will you setup jenkins ci cd for that?
+* where do you store config files in k8s ?
+* what is blue green and canary deployment?
+* there is an nginx deplopment initially i use replicaset as 5 now i make it 15 but after apply it it running only 5 which existing one other one are not getting started how will you troubleshoot it ?
+
+---
+
+### HCL Tech
+
+* what pod distribution budget
+* there are two pods one is running in one ns1 and other in ns2 how you can make communication betn these two pods how you can check the commmunication betn them
+* eks version u r using
+* what is the diffn betn replicaset and replication controller
+
+---
+
+### Infosys
+
+**Kubernetes**
+
+* What is kubernetes?
+* What is deployment?
+* What is the difference between service and ingress?
+* What is the difference between configmap and secrets?
+* How you will expose application on kubernetes?
+* What is pod ?
+* If we can store two containers in pod then what is use of second container?
+
+**Helm**
+
+* What is helm?
+* If I deployed application using helm version 1 and now I deploying new version that is helm 2 there is an issue with helm version 2 how will you solve this?
+
+---
+
+### Amdocs
+
+* architecture of k8s ?
+* what is orchestation ?
+
+---
+
+### TSYS Round 1
+
+* Let's say. I nave deployed API in Kubernetes. And it is running database. Okay. so, What are all the components that are needed? F actively. Serve the request that is coming from outside lines
+* The API is running. The API is running in a Kubernetes cluster in a place.
+* Okay, so I am a client. I'm coming to you. I need To access that APA. Okay. So, you need to configure. Multiple things. For that. So that I will be able to access it because they is currently running in the AWS. That is a private. Your private VPC. I am a public user, I need to access it. So what are all the
+* So what are all the components that are needed that you need to configure? So that I will be A able to access your API.
+* A load balancer. You have created in that is AWS component. In Kubernetes You have created the increase of created the service
+* okay, so now you have created a service load balancer service When you create a Load Balancer service. So what will be created in the AWS side?
+
+### TSYS Round 2
+
+* Kubectl and kubeproxy is created by yaml files or not how its created then?
+* Diff demonset and deployement ?
+
+---
+
+### Deepintent
+
+* Which k8s cluster version you folks are using and what is the size of worker nodes u folks are using ?
+* If i want to deploy a new microservice on kubernetes cluster how can do that ?
+* Lets take there are existing applications and user wants to access that application but its getting 503 error how you will solve this error ?
+* What is 503 error ?
+
+---
+
+### RapiPay
+
+**1st Round**
+
+* K8s rbac deployement statefulset pv pvc
+
+---
+
+### Trigyn
+
+* what is ns in k8s
+
+---
+
+### AgiliDEA
+
+* so suppose there are two ns customer this exposed and admin that is not exposed not have access to customer but second ns has need to access to first so waht configuration will u do?
+* where will you create a role ?
+* where will you create service account ?
+
+---
+
+### Royal Cyber
+
+* If there are 5 master node and 10 worker node is running and due to some issue 3 goes down could you tell me my k8s cluster will run of not?
+* How will you upgrade k8s cluster ?
+* Now lets take there is new user which is recently joined whose name is soham and i want to create that user and also i want create a role for him how can i do that?
+* which one is stable version in kubernetes?
+* k8s architecture?
+* In kubernetes how will you expose your application to external world so user can access it?
+* what is labels and selector?
+* How you can create a kubernetes cluster I am asking on on primise ?
+
+---
+
+### One2N
+
+* How services wil communicate ? talk with each other in kubernetes ?
+* Could you tell me end to end setup for kubernetes cluster for ELK from scratch how its things works and how to implement?
+* In eks cluster How will you know that this the authentication is valid user ?
+* what is the difference between demonset and replicaset ?
+* how will you set up elk from scratch for kubernetes nodes ?
+* How you setup basic setup for kibana using deployement file ?
+
+---
+
+### Deloitte
+
+* How does a user access an application deployed in a Kubernetes cluster? What is the process ?
+* What is the difference between PV (Persistent Volume) and PVC (Persistent Volume Claim) ?
+* Explain the Kubernetes architecture used in your project.
+* Are you using stateful or stateless applications in your project ?
+* What is a StatefulSet in Kubernetes ?
+* Scenario-based questions related to PVC (Persistent Volume Claim) and PV (Persistent Volume).
+* How is a Persistent Volume (PV) created in Kubernetes?
+* What is a Persistent Volume (PV)?
+* What is the difference between a Persistent Volume (PV) and a Persistent Volume Claim (PVC) ?
+* What are the different services in Kubernetes, and which services have you worked on ?
+* Which ingress controller are you using in your project?
+* What is the difference between a rollback, a canary deployment, and a blue-green deployment in Kubernetes ?
+* Scenario-based questions related to deployments in Kubernetes.
+
+---
+
+### Broadridge
+
+* Write replicaset manifest files ?
+* write manifest file for replicaset take replicaset number as 5 ?
+* Replicaset and Deployment diff ?
+* Could tell me if I want install fluentbit on Kubernetes Cluster how can you do it ?
+
+---
+
+### Maruti Tech Labs
+
+* Let's take there is an person who created pods in kubernetes without creating deployment files and labels and now you want check it its created by default lables now Want change label how can you do that ?
+* If let's take example there two application which deployed i.e two pods running on two differenet nodes in two different nodes now I want drain out 2 pods on one node that pods and want to run it on single node how can I do that ?
+
+---
+
+### Cloudraft
+
+* How you store sectrets in kubenernetes like in sectret manager let's take you have created secrets how argocd knows that the particular secret is not synceed means thats not be pushed.
+
+---
+
+### Misc Kubernetes
+
+* how you check the health of docker container have created mysql data base application by using statefulset now coz of some out of 4 1 pod is in crashloop backoff error now my question is if the pod state changed from crashloop backoff to ready state will it change the name of pod like earlie was mysql-001
