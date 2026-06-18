@@ -1,0 +1,144 @@
+### Securly
+
+* FROM mavne:3.8.5-openjdk-11-slim AS build
+* WORKDIR /app
+* COPY . .
+* RUN mvn clean package
+* FROM openjdk:11-jre AS runtime
+* WORKDIR /app
+* COPY --from=build /app/target/*.jar app.jar
+* EXPOSE 8080
+* CMD ["java","-jar","app.jar"]
+
+* what is AS there
+
+* .dockerignore
+
+* Control Group
+
+* Cgroups
+
+* is there is a monunt path /home/soham i want use it in different containers shall i do that in docker?
+
+---
+
+### Infosys
+
+**Docker**
+
+* What Dockerfile
+* How do you write Dockerfile?
+* What type of apps are there ?
+* How do you build an image?
+* If I have not mentioned cmd and entry point will it run docker file ?
+
+---
+
+### Inferyx
+
+* Create a Dockerfile for a Spring Boot app that:
+
+  * Uses OpenJDK 17.
+  * Copies the target/*.jar into the image.
+  * Exposes port 8080.
+  * Uses ENTRYPOINT to run the app.
+
+---
+
+### AgiliDEA
+
+* What is overlay networking in docker?
+* okay so in conatiner i want to access the data outside container a conatiner is running runtime has to accept some data outside so what configuration will you do in dockerfile?
+* one gUId of conatiner needs to be used by second guid of second conatiner so what would be the docker file for second conatiner to accept guid of fisrt conatiner
+* what are docker bind mounts?
+* so why this mind mounts are used ?
+* so what case u use bind mont and what case u use presistent i.e default volume ?
+* when do yo do docker pause what it will happen ?
+* have you ever managed psss in dcker yes how to do that?
+
+---
+
+### Royal Cyber
+
+* What r the types of volumes in docker ?
+* Difference betn persistent and mount bind volume in docker?
+* How will you push image to docker regisry from kubernetes cluster?
+* I am asking the mirror image
+* How take back image that we recently lost? docker commit
+
+---
+
+### CGI
+
+* lets take example i want to scale my nginx conatiner in docker how can i achieve that ?
+* docker swarm init
+* docker service create --name nginx-service --replicas 1 -p 80:80 nginx
+* docker service scale nginx-service=3
+
+---
+
+### Maruti Tech Labs
+
+* Docker I want to run docker image how will you that which os will it run on like windows or linux
+* docker networking types
+* two containers are running on default networking can they talk with each other ?
+
+---
+
+### Deloitte
+
+* In a Dockerfile, which user performs what action, and how can I specify the user ?
+* What are the different networking types in Docker ?
+* What is the difference between a bridge network and an overlay network in Docker ?
+* How do you map ports in a Dockerfile ?
+* If there is one port 80 and another port 8000, how do you map them in Docker ?
+
+---
+
+### Cloudraft / Misc
+
+* Docker
+* cmd and entrypoint
+* how you check the health of docker container
+* I want to know the ip of my mysql container without running exec command in docker
+
+---
+
+### Trigyn
+
+* dockerfile let's take you got info from dev like this is code and now you want to create dockerfile which things will you consider while creating a dockerfile
+* he is not asking best practises
+
+---
+
+### Valere Labs
+
+* now i want to deploy it via docker without k8s how will you setup jenkins ci cd for that?
+* now i want to deploy 20 microservices with helps of docker how will you setup jenkins ci cd for that? how will you make communication between them?
+
+---
+
+### Common Docker Topics Repeated Across Interviews
+
+* Docker Architecture
+* Dockerfile
+* CMD vs ENTRYPOINT
+* Multi-stage Docker Builds
+* Docker Networking
+* Bridge Network vs Overlay Network
+* Docker Volumes
+* Bind Mounts vs Volumes
+* Docker Swarm
+* Docker Compose
+* Docker Image Build Process
+* Docker Registry (Docker Hub/ECR)
+* Docker Health Checks
+* Docker Security
+* Docker User Instruction
+* Container Communication
+* Container Logs
+* Persistent Storage
+* Docker Secrets
+* Cgroups & Namespaces
+* .dockerignore
+* Docker Troubleshooting
