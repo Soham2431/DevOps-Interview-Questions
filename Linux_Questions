@@ -1,3 +1,97 @@
+### Infinite
+
+**Linux**
+
+* what are the file system herachy
+* how you will sudo permission to normal user
+* what is umask
+* what is inode?
+* how you will add port 22 in linux?
+* how will u connect to linux server from one to another if ssh port is enabled still you are unable to connect to that server?
+* how you deploy jar and war tomcat on linux server if you r using tomcat for web app?
+* how you do disk partition on linux?
+* what are disk partition are there in linux?
+* copy file and dir from src to dest?
+* check mem and check cpu and disk?
+* how find the space of entire linux server?
+* how will you do passwardless authentication betn two servers?
+
+---
+
+### TSYS Round 1
+
+* So, in a Linux machine. Let's say you have a instance created. And you need that instance to use a particular DNS. So, how you will configure that?
+* yeah, there is a DNS server, let's say, you have you are hosting a DNS and you have a different DNS server and you have you need your PC to instance, to use your DNS server. How you will be able to achieve that?
+* Okay, you have DNS server. You have created a DNS server. Okay, and you have created a easy to instance. That is a Linux instance: 80 you want your Linux instance to use the DNS server that you have created? For the name resolution. So, how you will achieve that?
+* Okay. Let's say you need to find a particular file. In a directory. How do you do that? What is the command?
+* So, how you will be able to filter out a single line? Using our command
+* If you put dollar one, Will it print? First. Line, or first column.
+* which is commnd to give as a single line out put from file
+* there are two files which contains 150 lines in one file and other file contain 200 lines how will find out that 50 different lines which not in file 1
+* What is xarg command do?
+
+---
+
+### CGI
+
+* In linux I want to install a package by using sudo apt get install but its showing package not found how to do it ?
+* apt get update
+* apt-cache search <package_name>
+
+---
+
+### One2N
+
+* How to check port of services running in linux ?
+
+---
+
+### Hi-Labs
+
+**Filename : /var/log/names.log**
+
+Content of file:
+
+My Name is Diksha
+My Name is Rahul
+My Name is Diksha
+My Name is Alok
+My Name is Diksha
+My Name is Akshay
+My Name is Deepak
+My Name is Amandeep
+My Name is Amey
+My Name is Diksha
+
+* print lines containing "Diksha" name in it
+* Print how many times Diksha is present in file
+* Print only "Diksha" no. of times it is present in file
+
+---
+
+### Common Linux Topics Repeated Across Interviews
+
+* Linux File System Hierarchy
+* File Permissions (chmod, chown, sudoers)
+* SSH & Passwordless Authentication
+* DNS Configuration
+* Networking & Ports
+* Disk Partitioning
+* Memory, CPU & Disk Monitoring
+* Inode
+* Umask
+* File Search Commands (find, locate)
+* Text Processing (grep, awk, sed, cut)
+* xargs
+* Package Management (apt, yum, dnf)
+* Log Analysis
+* Process Management
+* Tomcat Deployment
+* Linux Troubleshooting
+* Storage & Disk Usage Commands
+
+===================================================
+
 1. Basic Commands & File Management
 
 ls -ltr → listing files with details.
