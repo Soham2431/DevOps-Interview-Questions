@@ -1,0 +1,92 @@
+### HCL Tech
+
+* git fetch vs git pull
+* git rebase
+* branching strategy
+* git cherrypick
+
+---
+
+### Valere Labs
+
+* what is git stash
+* git status
+* git squash
+
+---
+
+### Trigyn
+
+* git and github diff
+* git head
+* git conflicts how you fix it
+
+---
+
+### Common Git & GitHub Topics Repeated Across Interviews
+
+#### Basic Git
+
+* What is Git?
+* Git vs GitHub
+* Git Architecture
+* Working Directory, Staging Area, Repository
+* git init
+* git clone
+* git add
+* git commit
+* git push
+* git pull
+
+#### Branching
+
+* What is Branch?
+* Branching Strategy
+* Feature Branch
+* Release Branch
+* Hotfix Branch
+* GitFlow
+
+#### Commands
+
+* git fetch vs git pull
+* git rebase
+* git merge
+* git cherry-pick
+* git stash
+* git status
+* git log
+* git reset
+* git revert
+* git diff
+* git tag
+* git squash
+
+#### Merge & Conflicts
+
+* What are merge conflicts?
+* How do you resolve git conflicts?
+* Rebase conflict resolution
+* Merge vs Rebase
+
+#### GitHub
+
+* What is GitHub?
+* Pull Request (PR)
+* Code Review Process
+* Fork vs Clone
+* Branch Protection Rules
+* GitHub Webhooks
+* GitHub Actions (if used)
+
+#### Scenario Based Questions
+
+* Developer committed code to wrong branch. How will you fix it?
+* You pushed a wrong commit to remote. How will you revert it?
+* How will you move a commit from one branch to another?
+* How will you remove sensitive data from Git history?
+* Two developers modified the same file. How will you resolve conflicts?
+* How will you squash 10 commits into 1 commit?
+* Difference between revert and reset?
+* How will you recover deleted branch?
+* How will you recover deleted commit?
