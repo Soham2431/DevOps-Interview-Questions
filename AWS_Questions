@@ -1,8 +1,8 @@
 **Hi-Labs**
-- Q3. If a version of an object is deleted from an S3 bucket and versioning is enabled, how can you recover it?
-- Q4. If all versions of an object (Terraform state file) are deleted from an S3 bucket, how can you recover the state file?
-- Q5. Initially, if the Terraform state file is stored locally, how do you create an S3 bucket for remote backend storage?
-- Q7. How do you upload a file from an EC2 instance to an S3 bucket?
+- If a version of an object is deleted from an S3 bucket and versioning is enabled, how can you recover it?
+- If all versions of an object (Terraform state file) are deleted from an S3 bucket, how can you recover the state file?
+- Initially, if the Terraform state file is stored locally, how do you create an S3 bucket for remote backend storage?
+- How do you upload a file from an EC2 instance to an S3 bucket?
 
 **NovaTekno Pune**
 - what are instance types ?
