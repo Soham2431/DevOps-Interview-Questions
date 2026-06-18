@@ -1,0 +1,94 @@
+### Hi-Labs
+
+* If all versions of an object (Terraform state file) are deleted from an S3 bucket, how can you recover the state file?
+* Initially, if the Terraform state file is stored locally, how do you create an S3 bucket for remote backend storage?
+* How do you maintain the Terraform state file in a team environment?
+
+---
+
+### Securly
+
+* in terraform there is an ec2 where templete is written for qa without duplication how can i do that in different env dev prod
+
+---
+
+### Vodafone
+
+* What the env are there
+
+---
+
+### Valere Labs
+
+* we have ec2 s3 rds which modules you are using what will be structure of that modules just give me overview?
+* what tearrform plan?
+* terraform validate?
+
+---
+
+### HCL Tech
+
+* what is local exec and remote exec in terraform
+* what is file provisioner in terraform
+* what are the commands do you know in terraform
+* if i want run specific commands during creation of ec2 how can do that with or without terraform
+* if i by mistake deleted statefile not stored in remote backend no backups how can i get it back
+
+---
+
+### Inferyx
+
+* Write a Terraform configuration to provision an EC2 instance in a specific VPC and subnet, and attach a security group that allows SSH access.
+
+---
+
+### Amdocs
+
+* what r the things u have worked on terraform?
+* what is count function in terraform?
+* any other way to do it like in looping ?
+* write trafform code for ec2 and provider as well?
+* lets take there 20 resources created and i want destroy only one resource how can do it ?
+
+---
+
+### Deloitte
+
+* In Terraform, I’ve created a database with sensitive information like a password, and I don't want it to appear in the output. How can I do that?
+* Which parameter do I need to pass in Terraform to avoid displaying sensitive information like a password in the output ?
+* In Terraform, there is a database password in my configuration. How can I ensure that the password does not appear in the output ? Which parameter should I use?
+* Let’s take a scenario: I am creating an EC2 instance and attaching it to a VPC. How can I ensure the VPC is created first and then the EC2 instance?
+* How do you ensure that a VPC is created before an EC2 instance in AWS using Terraform ?
+
+---
+
+### AgiliDEA
+
+* You have aws accound someone give you secrete acceess keys now there is an requirement u need to create ec2 instace whose name is instance one and region is ohio now you have to create ec2 instace via tf file how will u do it ?
+
+---
+
+### Maruti Tech Labs
+
+* There are different env like dev and staging there are modules of each resource if i want run my ec2 with duplication on terraform shall i do that?
+* What is null resource in terraform ?
+
+---
+
+### Misc Terraform
+
+* terraform state file related scenarios
+* remote backend (S3) related scenarios
+* state locking related scenarios
+* module structure related scenarios
+* count vs for_each
+* provisioners (local-exec, remote-exec, file)
+* sensitive variables and outputs
+* terraform plan
+* terraform validate
+* terraform commands
+* resource dependency (depends_on)
+* targeted destroy of single resource
+* multi-environment setup (dev/qa/stage/prod)
+* recovery of deleted state file
+* reusable EC2 modules for different environments
