@@ -1,22 +1,53 @@
 **Hi-Labs**
 - If a version of an object is deleted from an S3 bucket and versioning is enabled, how can you recover it?
+==> When versioning is enabled, deleting an object creates a delete marker instead of permanently removing the object. To recover it, enable version view in S3, 
+    locate the previous version, and either delete the delete marker or restore the required version. This makes the object accessible again.
+
 - If all versions of an object (Terraform state file) are deleted from an S3 bucket, how can you recover the state file?
+==> If all versions of a Terraform state file are deleted from an S3 bucket, the state cannot be recovered through S3 versioning. Recovery must come from backups 
+such as AWS Backup, CRR, or local terraform.tfstate.backup files. If no backup exists, the state must be recreated by importing existing infrastructure resources 
+using terraform import. This is why enabling S3 versioning, backups, and DynamoDB state locking is considered a best practice for Terraform remote state management.
+
 - Initially, if the Terraform state file is stored locally, how do you create an S3 bucket for remote backend storage?
+==> Initially, Terraform state is stored locally. Before configuring an S3 backend, I first create the S3 bucket (and optionally a DynamoDB table for state locking) 
+either manually or using a separate Terraform configuration. Then I add the S3 backend block and run terraform init. Terraform migrates the existing local state file
+to the S3 bucket, after which all future state operations use the remote backend.
+
 - How do you upload a file from an EC2 instance to an S3 bucket?
+==> I would create IAM role with s3 permission i.e get and put object permission and attach an IAM role to the EC2 instance and use the AWS CLI to upload files to 
+S3. This avoids storing access keys on the server and is more secure.
 
 **NovaTekno Pune**
-- what are instance types ?
-- i am unable to login into ec2 instance ? how to fix ?
-- instance a in vpc a and instance b vpc b i created peering in vpc a and b but instance a connect to b but b cannot connot connect a how to fix it ?
-- there is an private instance i want login into it how can i do that ?
-- there is database i want login it securely what are parameters will u consider ?
-- what is diff betn gateway lb and network lb ?
-- there is a lb and what to create a domain name of that how can i do this ?
-- if i want to find out the miscellaneous user login into my ec2 account how can i do that ?
-- if i want to check my logs of ec2 instance how can i do that without using cloudwatch vpc logs prometheus grafana as well ?
+- What are instance types ?
+==> EC2 instance types are predefined virtual machine configurations that determine the CPU, memory, storage, and network capacity of an EC2 instance. AWS provides 
+different instance families such as General Purpose, Compute Optimized, Memory Optimized, Storage Optimized, and GPU instances to support different workload 
+requirements. For example, I use t3 instances for general workloads and c5 instances for CPU-intensive applications.
+=======================================================================================
+| Family                | Purpose                          | Example                  |
+| --------------------- | -------------------------------- | ------------------------ |
+| General Purpose       | Balanced CPU and Memory          | `t3`, `t4g`, `m5`, `m6i` |
+| Compute Optimized     | High CPU workloads               | `c5`, `c6i`              |
+| Memory Optimized      | Memory-intensive applications    | `r5`, `r6i`, `x1`        |
+| Storage Optimized     | High IOPS and storage throughput | `i3`, `i4i`, `d3`        |
+| Accelerated Computing | GPU/ML workloads                 | `p5`, `g5`               |
+=======================================================================================
+
+- I am unable to login into ec2 instance ? how to fix ?
+==> If I'm unable to log in to an EC2 instance, I first verify the instance is running and passing status checks. Then I check the security group for SSH port 22 
+access, confirm the correct key pair and username are being used, verify the instance has a reachable public IP and proper route to the Internet Gateway, review NACL
+rules, and check whether the SSH service is running. If SSH still fails, I use Systems Manager Session Manager or the EC2 Serial Console to investigate logs, disk 
+space, and resource utilization.
+
+- Instance a in vpc a and instance b vpc b i created peering in vpc a and b but instance a connect to b but b cannot connot connect a how to fix it ?
+- There is an private instance i want login into it how can i do that ?
+- There is database i want login it securely what are parameters will u consider ?
+- What is diff betn gateway lb and network lb ?
+- There is a lb and what to create a domain name of that how can i do this ?
+- If i want to find out the miscellaneous user login into my ec2 account how can i do that ?
+- If i want to check my logs of ec2 instance how can i do that without using cloudwatch vpc logs prometheus grafana as well ?
 
 **Securly**
-- in terraform there is an ec2 where templete is written for qa without duplication how can i do that in different env dev prod
+- In terraform there is an ec2 where templete is written for qa without duplication how can i do that in different env dev prod
 
 **Vodaphone**
 - How you will HA architecture on AWS
