@@ -70,25 +70,23 @@
 - what is gateway load balancer
 
 **inferyx**
-- 3. Write a Terraform configuration to provision an EC2 instance in a specific VPC and subnet, and attach a security group that allows SSH access.
-- 6. Write a Python script that: Lists all EC2 instances in a given region. Filters instances by running state. Prints instance ID, type, and public IP.
-- 7. Write a simple CloudFormation template to: Create a VPC with one public subnet. Launch an EC2 instance in the subnet. Add outputs for the subnet ID and instance ID.
+- Write a Terraform configuration to provision an EC2 instance in a specific VPC and subnet, and attach a security group that allows SSH access.
+- Write a Python script that: Lists all EC2 instances in a given region. Filters instances by running state. Prints instance ID, type, and public IP.
+- Write a simple CloudFormation template to: Create a VPC with one public subnet. Launch an EC2 instance in the subnet. Add outputs for the subnet ID and instance ID.
 
 **Amdocs**
 - write trafform code for ec2 and provider as well?
 
 **TSYS**
-- *(Round 1)* Let's say. I nave deployed API in Kubernetes... it is currently running in the AWS. That is a private. Your private VPC... A load balancer. You have created in that is AWS component... Okay. Now let's say you have created a, what kind of Like in Route, 53 water. All the things, you will provide for that.
-- *(Round 2)* Types of load balacers ? Diff ALB and NLB when to use ALB when to NLB ?
-- *(Round 2)* You are DB application is in private sub how will you expose it to internet so he can talk with internet but request can not be comes from interet to db ?
+- Let's say. I nave deployed API in Kubernetes... it is currently running in the AWS. That is a private. Your private VPC... A load balancer. You have created in that is AWS component... Okay. Now let's say you have created a, what kind of Like in Route, 53 water. All the things, you will provide for that.
+- Types of load balacers ? Diff ALB and NLB when to use ALB when to NLB ?
+- You are DB application is in private sub how will you expose it to internet so he can talk with internet but request can not be comes from interet to db ?
 
 **RapiPay**
 - AWS three tier architecture
 - securely configuration related to ec2 or s3
 - s3 types
 - s3 lifecycle
-- RDS
-- lamda
 - how you will create user in RDS
 
 **country delight**
