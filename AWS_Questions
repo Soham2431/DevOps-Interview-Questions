@@ -38,16 +38,55 @@ access, confirm the correct key pair and username are being used, verify the ins
 rules, and check whether the SSH service is running. If SSH still fails, I use Systems Manager Session Manager or the EC2 Serial Console to investigate logs, disk 
 space, and resource utilization.
 
-- Instance a in vpc a and instance b vpc b i created peering in vpc a and b but instance a connect to b but b cannot connot connect a how to fix it ?
-- There is an private instance i want login into it how can i do that ?
-- There is database i want login it securely what are parameters will u consider ?
-- What is diff betn gateway lb and network lb ?
-- There is a lb and what to create a domain name of that how can i do this ?
-- If i want to find out the miscellaneous user login into my ec2 account how can i do that ?
-- If i want to check my logs of ec2 instance how can i do that without using cloudwatch vpc logs prometheus grafana as well ?
+- Instance A in vpc A and instance B vpc B i created peering in vpc A and B but instance A connect to B but B cannot connot connect A how to fix it ?
+==> If traffic is one-way across a VPC peering connection, I first verify that both VPC route tables have routes pointing to the peering connection. Then I check 
+the security groups to ensure the required inbound ports are allowed from the other VPC's CIDR or security group. After that, I verify the network ACLs because 
+they are stateless, and finally I check the instance's OS firewall. In most cases, the issue is a missing route or an inbound security group rule.
+
+- There is an private instance I want login into it how can I do that ?
+==> There are multiple ways to access a private EC2 instance. Traditionally, I would use a bastion host in a public subnet and SSH from the bastion to the private 
+instance. In production, I prefer AWS Systems Manager Session Manager because it doesn't require a public IP or opening port 22. 
+Requirements:
+1. SSM Agent installed (Amazon Linux 2 and newer AMIs typically include it).
+2. EC2 instance has an IAM role with the AmazonSSMManagedInstanceCore policy.
+3. The instance has internet access (via NAT Gateway) or VPC endpoints for Systems Manager.
+
+- There is database I want login into it securely what are parameters will you consider ?
+==> To securely connect to a database, I would first ensure it is deployed in a private subnet with no public access. I would configure Security Groups to allow 
+traffic only from trusted sources, use strong authentication or IAM authentication, enable SSL/TLS for encryption in transit and KMS encryption at rest,follow the 
+principle of least privilege, enable monitoring and auditing, configure automated backups, and use Multi-AZ deployment for high availability in production.
+
+- What is diffn betn gateway LB and network LB ?
+==> 
+=====================================================================================================
+| Feature   | Network Load Balancer (NLB)          | Gateway Load Balancer (GWLB)                   |
+| --------- | ------------------------------------ | ---------------------------------------------- |
+| OSI Layer | Layer 4                              | Layer 3/4 (traffic forwarding for inspection)  |
+| Purpose   | Load balances application traffic    | Routes traffic through security appliances     |
+| Protocols | TCP, UDP, TLS                        | GENEVE (encapsulates traffic)                  |
+| Backend   | EC2 instances, IPs, containers       | Virtual firewalls, IDS/IPS, network appliances |
+| Use Case  | High-performance application traffic | Centralized network security and inspection    |
+=====================================================================================================
+
+- There is a Load Balancer, and you want to create a domain name for it. How would you do that ?
+==> I would use Amazon Route 53 to create a Hosted Zone for the domain and then create an Alias A record pointing to the Load Balancer's DNS name. If the domain 
+is managed by another DNS provider, I would create a CNAME record instead. For secure access, I would provision an SSL certificate using AWS Certificate Manager 
+and attach it to the Load Balancer so users can access the application using HTTPS.
+
+- If I want to find out the miscellaneous user login into my ec2 account how can I do that ?
+==> To find out who has logged into an EC2 instance, I would first use the last command to view login history and who or w to see currently logged-in users. 
+I would then check the authentication logs (/var/log/auth.log on Ubuntu or /var/log/secure on Amazon Linux/RHEL) to review successful and failed SSH login attempts, 
+including usernames and source IP addresses. If I need to audit AWS-level actions such as who started or modified the EC2 instance, I would use AWS CloudTrail.
+
+- If you want to check the logs of an EC2 instance without using CloudWatch, VPC Flow Logs, Prometheus, or Grafana, how would you do it?
+==> If I want to check the logs of an EC2 instance Without CloudWatch or other monitoring tools, I would SSH into the EC2 instance and check the logs directly on the server. I would use journalctl for systemd 
+services, inspect system logs such as /var/log/messages or /var/log/syslog, review application logs and web server logs like Nginx or Apache, and use commands 
+like tail, less, and grep to troubleshoot errors. This is the standard Linux-based approach for diagnosing issues on an EC2 instance.
 
 **Securly**
-- In terraform there is an ec2 where templete is written for qa without duplication how can i do that in different env dev prod
+- In terraform there is an ec2 where templete is written for qa without duplication how can i do that in different env dev prod ?
+==> I would create a reusable Terraform module for the EC2 instance. The module contains the common EC2 configuration, while Dev, QA, and Prod each call the module with different variable values such as instance 
+type, tags, or AMI. This avoids code duplication, improves maintainability, and follows Terraform best practices.
 
 **Vodaphone**
 - How you will HA architecture on AWS
