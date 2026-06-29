@@ -396,7 +396,19 @@ from the internet. This allows private instances to download updates or access e
 - route53 - policy types and how we check health check ?
 - There are different env like dev and staging there are modules of each resource if i want run my ec2 with duplication on terraform shall i do that?
 
-**(Final unnamed section)**
-- I have deployed my application on ec2 instance and it's giving me 500 when user trying acces it via url name
-- terraform there is an ebs there are different env dev env and staging env now i am doing terraform plan but changing the tag of that ebs how will you fix it
+**(Final section)**
+
+- I have deployed my application on an EC2 instance, but users are getting a 500 Internal Server Error when accessing it through the URL. 
+How would you troubleshoot it?
+==> A 500 Internal Server Error means the request reached the server, but the application failed to process it. I would first verify that the application service 
+is running, then review the application logs and web server logs to identify the root cause. Next, I would test the application locally using curl, 
+verify the reverse proxy configuration, check database connectivity, and review CPU, memory, and disk utilization on the EC2 instance. If a Load Balancer is 
+involved, I would also verify target health and Security Group rules. By troubleshooting each layer systematically, I can quickly isolate and resolve the issue.
+
+- There is an EBS volume managed by Terraform for multiple environments (Dev, Staging, Prod). When I run terraform plan, it always shows changes to the EBS 
+tags even though I haven't modified anything. How would you fix it?
+==> If Terraform keeps showing tag changes for an EBS volume, I would first review the terraform plan output to identify which tags are changing. Then I would 
+compare the environment-specific variables, check for configuration drift caused by manual changes in AWS, and verify whether provider default_tags are applied 
+consistently. If Terraform is the source of truth, I would apply the changes. If the tags are intentionally managed outside Terraform, I would use a lifecycle 
+{ ignore_changes = [tags] } block to prevent unnecessary updates.
 
