@@ -315,11 +315,28 @@ It provides centralized key management, fine-grained access control through IAM 
 This helps secure data and meet compliance requirements without having to manage encryption keys manually.
 
 **Intellect Design Arena**
-- i am unable to pull image from ecr ? pass is correct creditals coreect everything is correct stil i am unable to fetch it hhow do you fix it ?
-- what is vpc ?
-- what is public private subnet?
-- private subnet has IGW or natGateway access ?
-- what is the use of nat gate way and internet gateway?
+- I am unable to pull an image from Amazon ECR. The password and credentials are correct, but I still can't pull the image. How would you troubleshoot it ?
+==> If I cannot pull an image from ECR, even with the correct credentials, I would troubleshoot systematically. First, I would verify that the IAM user or role 
+has the required ECR permissions. Then I would authenticate Docker again using aws ecr get-login-password and confirm the repository name, image tag, account ID, 
+and AWS Region are correct.
+
+- What is a VPC ?
+==> A VPC (Virtual Private Cloud) is a logically isolated virtual network in AWS where you can launch and manage AWS resources such as EC2 instances, RDS databases, 
+Load Balancers, and EKS clusters.
+
+- What is the difference between a Public Subnet and a Private Subnet?
+==> A public subnet is a subnet whose route table has a route to an Internet Gateway, allowing resources with public IPs to communicate with the internet. A private 
+subnet does not have a route to an Internet Gateway, so its resources cannot be accessed directly from the internet. If private instances require outbound internet 
+access, they use a NAT Gateway. Typically, internet-facing resources like Load Balancers and Bastion Hosts are placed in public subnets, while application servers 
+and databases are placed in private subnets.
+
+- Private subnet has IGW or natGateway access ?
+==> NatGateway
+
+- What is the use of NatGateway and Internet gateway ?
+==> An Internet Gateway enables instances in a public subnet to send and receive traffic from the internet, provided they have a public or Elastic IP. 
+A NAT Gateway, on the other hand, enables instances in a private subnet to initiate outbound connections to the internet while preventing inbound connections 
+from the internet. This allows private instances to download updates or access external services without being publicly accessible.
 
 **Valere Labs**
 - there is an java app i want deploy it on ec2 without docker and kubertes how will you setup jenkins ci cd for that?
