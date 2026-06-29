@@ -85,39 +85,234 @@ like tail, less, and grep to troubleshoot errors. This is the standard Linux-bas
 
 **Securly**
 - In terraform there is an ec2 where templete is written for qa without duplication how can i do that in different env dev prod ?
-==> I would create a reusable Terraform module for the EC2 instance. The module contains the common EC2 configuration, while Dev, QA, and Prod each call the module with different variable values such as instance 
-type, tags, or AMI. This avoids code duplication, improves maintainability, and follows Terraform best practices.
+==> I would create a reusable Terraform module for the EC2 instance. The module contains the common EC2 configuration, while Dev, QA, and Prod each call the module 
+with different variable values such as instance type, tags, or AMI. This avoids code duplication, improves maintainability, and follows Terraform best practices.
 
 **Vodaphone**
-- How you will HA architecture on AWS
-- VPC endpoint
-- There is S3 bucket in ac1 how will access EC2 in ac2
-- There is an EC2 which is in private subnets how will access it?
-- With SSM how will access like how you will configure it so we can able to do it in SSM?
-- Diif betn endpoint and private link ?
-- IAM role and IAM use difference
+- How would you design a High Availability (HA) architecture on AWS ?
+==> To design a highly available architecture on AWS, I would deploy the application across multiple Availability Zones using an Auto Scaling Group behind an 
+Application Load Balancer. For the database, I would use Amazon RDS Multi-AZ with automatic failover. Static files would be stored in Amazon S3, and shared 
+storage would use EFS if needed. I would configure Route 53 for DNS and health checks, use CloudWatch for monitoring and alerts, and enable automated backups 
+and snapshots. This design eliminates single points of failure and ensures high availability and fault tolerance.
+
+- What is VPC endpoint ?
+==> A VPC Endpoint is a service that allows resources inside a VPC to privately connect to AWS services without using the public internet, NAT Gateway, 
+Internet Gateway, or VPN.
+It keeps the traffic within the AWS network, making the communication more secure and reducing exposure to the internet.
+There are two main types: Gateway Endpoints for S3 and DynamoDB, and Interface Endpoints (AWS PrivateLink) for most other AWS services.
+
+- There is an S3 bucket in AWS Account A. How can an EC2 instance in AWS Account B access it?
+==> To allow an EC2 instance in Account B to access an S3 bucket in Account A, I would attach an IAM role to the EC2 instance and update the S3 bucket policy 
+in Account A to allow that IAM role to access the bucket. This provides secure cross-account access using temporary credentials and follows AWS security best 
+practices. For more complex scenarios, I can also use cross-account IAM role assumption with AWS STS.
+
+I would create an IAM role in Account A with the required S3 permissions and configure its trust policy to allow a role from Account B to assume it. Then, 
+I would attach an IAM role to the EC2 instance in Account B with permission to call sts:AssumeRole on the Account A role. The EC2 instance assumes the role, 
+receives temporary credentials from AWS STS, and uses those credentials to access the S3 bucket securely.
+
+- There is an EC2 which is in private subnets how will access it ? With SSM how will access like how you will configure it so we can able to do it in SSM?
+==> To access a private EC2 instance using AWS Systems Manager, I would first ensure the SSM Agent is installed on the instance. Then I would attach an IAM role 
+with the AmazonSSMManagedInstanceCore policy. Since the instance is in a private subnet, I would either configure Interface VPC Endpoints for SSM, EC2 Messages, 
+and SSM Messages, or provide outbound connectivity through a NAT Gateway. Once the instance is registered as a managed instance in Systems Manager, I can start 
+a Session Manager session from the AWS Console or AWS CLI without needing a public IP, bastion host, or opening port 22.
+
+- What is the difference between a VPC Endpoint and AWS PrivateLink ?
+==> A VPC Endpoint is the overall AWS feature that provides private connectivity to supported services. It includes Gateway Endpoints for S3 and DynamoDB, and 
+Interface Endpoints. AWS PrivateLink is the technology that powers Interface Endpoints. It creates private ENIs inside the VPC and enables secure private access 
+to AWS services, third-party services, or services hosted in another AWS account through a Network Load Balancer.
+
+- What is the difference between an IAM User and an IAM Role?
+==> An IAM User represents a person or application and uses long-term credentials such as passwords or access keys. An IAM Role does not have permanent credentials; 
+instead, it provides temporary credentials through AWS STS. Roles are commonly used by AWS services like EC2 and Lambda, as well as for cross-account access, 
+making them more secure because there are no long-term credentials to manage.
+
 - How many accounts are you using
-- Is your Jenkins is different on different account in EC2 or same like it installed in same EC2 which used for different env?
-- How will configure Jenkins to talk with other services in AWS so we can able to required activities over there ?
-- VPC end point and private link difference
-- What we NAT Gateway
-- How you access EC2 in private sub?
-- How you connect EC2 in private sub ?
+==> In my projects, we typically use three AWS accounts: Development, QA/UAT, and Production. In some organizations, there is also a separate Shared Services or 
+Management account. These accounts are managed through AWS Organizations, and we use IAM Roles with STS AssumeRole for secure cross-account access.
+
+- Is Jenkins different for each AWS account, or do you use the same Jenkins server for all environments ?
+==> It depends on the organization's architecture. Some companies deploy separate Jenkins servers for Dev, QA, and Production to achieve complete isolation. 
+In many organizations, including enterprise setups, a single Jenkins server is hosted in a Shared Services account and uses IAM Roles with STS AssumeRole 
+to securely deploy to multiple AWS accounts. This centralizes CI/CD management while maintaining secure, least-privilege access.
+
+- How will you configure Jenkins to communicate with AWS services so it can perform the required activities?
+==> I would install Jenkins on an EC2 instance and attach an IAM Role with the required AWS permissions. Since the role is attached to the EC2 instance, 
+Jenkins automatically receives temporary credentials through the Instance Metadata Service, eliminating the need to store AWS access keys. I would install 
+tools like the AWS CLI, kubectl, Terraform, and Docker on the Jenkins server. If Jenkins needs to access another AWS account, I would use cross-account 
+ IAM Roles with AWS STS AssumeRole. This approach is secure, follows AWS best practices, and adheres to the principle of least privilege.
+
+- What is a NAT Gateway ?
+==> A NAT Gateway is an AWS managed service that allows instances in a private subnet to access the internet without exposing them to inbound internet traffic. 
+It is deployed in a public subnet with an Elastic IP, and the private subnet's route table points internet-bound traffic to the NAT Gateway. It is commonly used 
+for software updates, downloading packages, accessing external APIs, and pulling container images while keeping EC2 instances private.
 
 **INFINITE (2nd entry)**
-- rote53 to record domain with dns with load balancer dns?
+- How do you map a domain name to an AWS Load Balancer ?
+==> I would create a Hosted Zone in Route 53 and then create an Alias A record that points the domain name to the Load Balancer's DNS name. If HTTPS is required, 
+I would provision an SSL certificate using AWS Certificate Manager and attach it to the Load Balancer. This allows users to access the application using a custom 
+domain instead of the ELB DNS name.
 
 **L2**
-- what is egress and ingress ?
-- there is an ec2 i want tocreate what areiput parametrs will you consider while creating ec2 by using terraform?
-- will you create new SG of use existing one ?
-- what is authorization in IAM ?
-- there are two accouns ac1 and ac2 how you wil connect with each other to access the resources? I said IAM role with assume the role in account1
-- You have an EBS volume of type gp3 attached to your EC2 instance, and now you want to change it to io1. How will you do that? Will it create a new volume, or will your data remain as it is?
-- what is subnets?
-- how you can create node group while creating eks?
-- what is KMS?
-- why we use KMS what is the use of KMS?
+- What are Ingress and Egress?
+==> Ingress means incoming network traffic entering a resource, while egress means outgoing traffic leaving a resource. For example, an SSH connection from my laptop 
+to an EC2 instance is ingress traffic, whereas the EC2 instance downloading software updates from the internet is egress traffic. Security Groups and Network ACLs 
+use ingress and egress rules to control this traffic.
+
+- If you are creating an EC2 instance using Terraform, what input parameters would you consider?
+==> When creating an EC2 instance with Terraform, I would parameterize values such as the AMI ID, instance type, subnet ID, VPC ID, security groups, IAM instance 
+profile, key pair, root volume configuration, user data, tags, and whether the instance should have a public IP. By using variables, the same Terraform module can 
+be reused across Dev, QA, and Production by simply passing different values through terraform.tfvars files, making the infrastructure reusable and easier to maintain.
+
+- When creating an EC2 instance, would you create a new Security Group or use an existing one?
+==> I would first check whether an existing Security Group meets the application's requirements. If it does, I would reuse it to maintain consistency and avoid 
+duplication. If the application requires different ports, access rules, or isolation, I would create a new Security Group. My goal is to follow the principle of 
+least privilege while keeping Security Groups reusable and easy to manage.
+
+- What is Authorization in AWS IAM  ?
+==> Authorization is the process of determining what actions an authenticated user or role is allowed to perform on AWS resources.
+In AWS IAM, authorization happens after authentication.
+Authentication answers: "Who are you?"
+Authorization answers: "What are you allowed to do?"
+
+- There are two AWS accounts (Account A and Account B). How will you connect them so they can access each other's resources?
+==> If the requirement is to access AWS resources across accounts, I would use cross-account IAM Roles with AWS STS AssumeRole. I would create an IAM Role in the 
+target account with the required permissions and configure its trust policy to trust the source account. The source account then assumes that role and receives 
+temporary credentials to access the resources securely. 
+If the requirement is network connectivity between EC2 instances, I would use VPC Peering or AWS Transit Gateway, depending on the scale of the environment.
+
+- You have an EBS volume of type gp3 attached to your EC2 instance, and now you want to change it to io1. How will you do that? Will it create a new volume, 
+or will your data remain as it is?
+==> I would use the Modify Volume feature in the EC2 console or the AWS CLI to change the EBS volume type from gp3 to io1. AWS performs this modification in 
+place, so it does not create a new volume. The volume ID remains the same, the data is preserved, and in most cases there is no downtime. If I choose io1, 
+I also need to specify the required Provisioned IOPS based on the application's performance requirements.
+
+- What is a Subnet?
+==> A Subnet (Subnetwork) is a logical subdivision of a VPC's IP address range. It allows you to divide a VPC into smaller networks and place resources based 
+on security and availability requirements.
+
+- How do you create a Node Group while creating an EKS cluster?
+==> 
+A **Node Group** is a group of EC2 instances (worker nodes) that run Kubernetes pods in an EKS cluster.
+
+There are multiple ways to create a Node Group.
+
+### Method 1: Using `eksctl` (Most Common)
+
+Create the EKS cluster with a managed node group:
+
+```bash
+eksctl create cluster \
+  --name demo-cluster \
+  --region ap-south-1 \
+  --version 1.30 \
+  --nodegroup-name workers \
+  --node-type t3.medium \
+  --nodes 2 \
+  --nodes-min 2 \
+  --nodes-max 5 \
+  --managed
+```
+
+This command creates:
+
+* EKS Cluster
+* Managed Node Group
+* EC2 worker nodes
+* Auto Scaling Group
+* Required IAM roles and networking
+
+---
+
+### Method 2: Create Node Group After Cluster Creation
+
+If the cluster already exists:
+
+```bash
+eksctl create nodegroup \
+  --cluster demo-cluster \
+  --name workers \
+  --node-type t3.medium \
+  --nodes 2 \
+  --nodes-min 2 \
+  --nodes-max 5 \
+  --managed
+```
+
+---
+
+### Method 3: AWS Management Console
+
+1. Go to **EKS**.
+2. Select the cluster.
+3. Choose **Compute**.
+4. Click **Add Node Group**.
+5. Configure:
+
+   * Node Group Name
+   * IAM Role
+   * AMI Type
+   * Instance Type
+   * Desired, Minimum, and Maximum Nodes
+   * Subnets
+6. Create the Node Group.
+
+---
+
+### Method 4: Terraform
+
+Create an EKS cluster and then create an `aws_eks_node_group` resource.
+
+Example:
+
+```hcl
+resource "aws_eks_node_group" "workers" {
+  cluster_name    = aws_eks_cluster.demo.name
+  node_group_name = "workers"
+  node_role_arn   = aws_iam_role.node_role.arn
+
+  subnet_ids = var.private_subnets
+
+  instance_types = ["t3.medium"]
+
+  scaling_config {
+    desired_size = 2
+    min_size     = 2
+    max_size     = 5
+  }
+}
+```
+
+---
+
+### What Parameters Would You Configure?
+
+* Cluster Name
+* Node Group Name
+* Instance Type
+* AMI Type
+* Node IAM Role
+* Private Subnets
+* Desired Capacity
+* Minimum and Maximum Nodes
+* Disk Size
+* Labels and Taints (if required)
+* SSH Access (optional)
+
+---
+
+## Best Interview Answer 
+
+> "I usually create a managed node group using `eksctl` or Terraform. While creating the node group, I specify the cluster name, node group name, IAM role, 
+private subnets, instance type, disk size, and Auto Scaling configuration such as desired, minimum, and maximum node count. EKS then provisions EC2 worker 
+nodes as part of an Auto Scaling Group, and these nodes automatically join the Kubernetes cluster."
+
+- What is AWS KMS?
+==> AWS Key Management Service (KMS) is a managed service used to create, manage, and control encryption keys for encrypting data in AWS.
+
+- Why do we use AWS KMS? What is the purpose of KMS?
+==> We use AWS KMS to securely manage encryption keys and protect sensitive data. KMS enables encryption for services such as S3, EBS, RDS, and Secrets Manager. 
+It provides centralized key management, fine-grained access control through IAM and key policies, automatic key rotation, and auditing through CloudTrail. 
+This helps secure data and meet compliance requirements without having to manage encryption keys manually.
 
 **Intellect Design Arena**
 - i am unable to pull image from ecr ? pass is correct creditals coreect everything is correct stil i am unable to fetch it hhow do you fix it ?
