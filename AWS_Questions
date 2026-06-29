@@ -339,15 +339,24 @@ A NAT Gateway, on the other hand, enables instances in a private subnet to initi
 from the internet. This allows private instances to download updates or access external services without being publicly accessible.
 
 **Valere Labs**
-- there is an java app i want deploy it on ec2 without docker and kubertes how will you setup jenkins ci cd for that?
-- we have ec2 s3 rds which modules you are using what will be structure of that modules just give me overview?
+
+- There is a Java application that needs to be deployed on an EC2 instance without using Docker or Kubernetes. How would you set up a Jenkins CI/CD pipeline?
+==> I would configure Jenkins to trigger automatically on every code commit using a Git webhook. The pipeline would check out the code, build the application with 
+Maven, run unit tests, and optionally perform a SonarQube scan. For deployment, Jenkins would connect to the EC2 instance over SSH, copy the generated JAR file, 
+stop the existing application service, replace the old JAR, and restart the application using systemctl. Finally, I would verify the deployment by checking the 
+service status and performing a health check using curl or the application URL. This provides a fully automated CI/CD pipeline without using Docker or Kubernetes.
+
+- Suppose you are provisioning EC2, S3, and RDS using Terraform. What modules would you create, and what would the project structure look like?
+==> I follow a modular Terraform structure. I create separate reusable modules for VPC, EC2, S3, RDS, Security Groups, IAM, ALB, and Route 53. Each module contains 
+its own main.tf, variables.tf, and outputs.tf. Then I create separate folders for Dev, QA,and Production, which simply call these modules with different variable 
+values. This avoids code duplication, improves maintainability, and follows the DRY principle.
 
 **HCL Tech**
 - if i want run specific commands during creation of ec2 how can do that with or without terraform
 - eks version u r using
 - s3 cores means
 - when we create LB what are the other componenets requred
-- what are the types of policies in dns
+- what are the types of policies in dns 
 - how to transfer ebs from one zone to another
 - what is gateway load balancer
 
@@ -357,23 +366,47 @@ from the internet. This allows private instances to download updates or access e
 - Write a simple CloudFormation template to: Create a VPC with one public subnet. Launch an EC2 instance in the subnet. Add outputs for the subnet ID and instance ID.
 
 **Amdocs**
-- write trafform code for ec2 and provider as well?
+- write terafform code for ec2 and provider as well?
 
 **TSYS**
-- Let's say. I nave deployed API in Kubernetes... it is currently running in the AWS. That is a private. Your private VPC... A load balancer. You have created in that is AWS component... Okay. Now let's say you have created a, what kind of Like in Route, 53 water. All the things, you will provide for that.
+- Let's say. I nave deployed API in Kubernetes... it is currently running in the AWS. That is a private. Your private VPC... A load balancer. You have created in 
+that is AWS component... Okay. Now let's say you have created a, what kind of Like in Route, 53 water. All the things, you will provide for that.
 - Types of load balacers ? Diff ALB and NLB when to use ALB when to NLB ?
 - You are DB application is in private sub how will you expose it to internet so he can talk with internet but request can not be comes from interet to db ?
+==> I would keep the database or application in a private subnet and deploy a NAT Gateway in a public subnet. The private subnet's route table would send outbound 
+internet traffic to the NAT Gateway. This allows the instance to access the internet for updates or external services while preventing any inbound connections 
+from the internet because the instance has no public IP and the NAT Gateway only supports outbound communication.
 
 **RapiPay**
 - AWS three tier architecture
 - securely configuration related to ec2 or s3
-- s3 types
-- s3 lifecycle
-- how you will create user in RDS
+- What are the different S3 Storage Classes (Types)?
+==> Amazon S3 provides multiple storage classes such as Standard, Intelligent-Tiering, Standard-IA, One Zone-IA, Glacier Instant Retrieval, Glacier Flexible 
+Retrieval, and Glacier Deep Archive. The appropriate storage class depends on how frequently the data is accessed, retrieval requirements, and cost optimization.
+
+- What is an S3 Lifecycle Policy?
+==> An S3 Lifecycle Policy automates object management by transitioning data to lower-cost storage classes or deleting it after a specified period. For example, 
+application logs can remain in S3 Standard for 30 days, move to Standard-IA after 30 days, Glacier after 90 days, and be deleted after one year.
+
+- How will you create a user in Amazon RDS?
+==> To create a user in Amazon RDS, I first connect to the database using the master user credentials. Then I execute SQL commands such as CREATE USER and GRANT 
+to create the database user and assign the required permissions. Finally, I apply the changes with FLUSH PRIVILEGES if required by the database engine. 
+If IAM Database Authentication is enabled, users can also authenticate using temporary IAM tokens instead of database passwords.
 
 **country delight**
 - There is an account a which contain ec2 and there is an account b which contain rds i want to connect it to ec2 in account a can we do that if yes then how if no then why?
-- NACL vs SG
+- What is the difference between a Network ACL (NACL) and a Security Group (SG)?
+==>
+====================================================================================================================
+| Security Group                                  | Network ACL                                                    |
+| ----------------------------------------------- | -------------------------------------------------------------- |
+| Instance-level firewall                         | Subnet-level firewall                                          |
+| Stateful                                        | Stateless                                                      |
+| Supports Allow rules only                       | Supports Allow and Deny rules                                  |
+| Return traffic is automatically allowed         | Return traffic must be explicitly allowed                      |
+| Multiple SGs can be attached to an EC2 instance | One NACL per subnet                                            |
+| Evaluates all rules together                    | Rules are evaluated in rule number order (lowest number first) |
+====================================================================================================================
 
 **AgiliDEA**
 - You have aws accound someone give you secrete acceess keys now there is an requirement u need to create ec2 instace whose name is instance one and region is ohio now you have to create ec2 instace via tf file how will u do it ?
