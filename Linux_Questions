@@ -144,3 +144,30 @@ How to check logs of a process.
 If system or service is down (e.g., ELK cluster), how to debug using Linux commands.
 Check file existence, size, permissions (ls -lh, stat, file, head/tail).
 
+
+#!/bin/bash
+
+THRESHOLD=80
+
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print int($2+$4)}')
+
+MEM_USAGE=$(free | awk '/Mem:/ {print int($3/$2 * 100)}')
+
+DISK_USAGE=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+
+check_usage() {
+    RESOURCE=$1
+    VALUE=$2
+
+    if [ "$VALUE" -ge "$THRESHOLD" ]; then
+        echo "🚨 ALERT: $RESOURCE usage is ${VALUE}% (Threshold: ${THRESHOLD}%)"
+
+    else
+        echo "✅ $RESOURCE usage is ${VALUE}%"
+    fi
+}
+
+check_usage "CPU" "$CPU_USAGE"
+check_usage "Memory" "$MEM_USAGE"
+check_usage "Disk" "$DISK_USAGE"
+
