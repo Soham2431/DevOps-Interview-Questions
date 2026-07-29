@@ -394,7 +394,15 @@ to create the database user and assign the required permissions. Finally, I appl
 If IAM Database Authentication is enabled, users can also authenticate using temporary IAM tokens instead of database passwords.
 
 **country delight**
-- There is an account a which contain ec2 and there is an account b which contain rds i want to connect it to ec2 in account a can we do that if yes then how if no then why?
+- There is an account a which contain ec2 and there is an account b which contain rds i want to connect it to ec2 in account a can we do that if yes then how 
+if no then why?
+==> Yes, it is possible to connect an EC2 instance in Account A to an RDS instance in Account B.
+The first requirement is establishing network connectivity between the two VPCs using VPC Peering, AWS Transit Gateway, or another supported networking 
+solution. After connectivity is established, I would update the route tables and configure the RDS Security Group to allow traffic from the EC2 instance or its 
+Security Group on the database port, such as 3306 for MySQL or 5432 for PostgreSQL.The application can then connect using the RDS endpoint. If the organization 
+uses IAM Database Authentication, I would also configure an IAM role and generate temporary authentication tokens instead of using a static database password. 
+However, IAM authentication does not replace the need for network connectivity.
+
 - What is the difference between a Network ACL (NACL) and a Security Group (SG)?
 ==>
 ====================================================================================================================
@@ -409,7 +417,9 @@ If IAM Database Authentication is enabled, users can also authenticate using tem
 ====================================================================================================================
 
 **AgiliDEA**
-- You have aws accound someone give you secrete acceess keys now there is an requirement u need to create ec2 instace whose name is instance one and region is ohio now you have to create ec2 instace via tf file how will u do it ?
+- You have aws accound someone give you secrete acceess keys now there is an requirement u need to create ec2 instace whose name is instance one and region is 
+ohio now you have to create ec2 instace via tf file how will u do it ?
+==> 
 
 **Royal Cyber**
 - In EBS what is the size oF block 10 gb of ebs volume?
