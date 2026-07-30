@@ -419,25 +419,95 @@ However, IAM authentication does not replace the need for network connectivity.
 **AgiliDEA**
 - You have aws accound someone give you secrete acceess keys now there is an requirement u need to create ec2 instace whose name is instance one and region is 
 ohio now you have to create ec2 instace via tf file how will u do it ?
-==> 
+==> First, I would configure the AWS credentials so Terraform can authenticate to the AWS account. I can do this by configuring the AWS CLI using aws configure 
+or by exporting the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as environment variables. I avoid hardcoding credentials in Terraform files.Next, I would 
+configure the AWS provider and specify the Ohio region (us-east-2).
+Then I would write the Terraform configuration to create an EC2 instance with the required AMI, instance type, and set the Name tag as instance-one.
+If this is a production environment, I would configure an S3 backend (and preferably DynamoDB for state locking) to store the Terraform state remotely. For a 
+simple interview task, a local backend is also acceptable unless remote state is specifically requested.
+Finally, I would execute:
+terraform init
+terraform plan
+terraform apply
+After the deployment, I would verify the EC2 instance in the AWS Console.
 
 **Royal Cyber**
 - In EBS what is the size oF block 10 gb of ebs volume?
 
 **Deloitte**
 - Let's say there's an application deployed in AWS, and we want it to be highly available. How can we achieve high availability ?
-- Let's take a scenario: I am creating an EC2 instance and attaching it to a VPC. How can I ensure the VPC is created first and then the EC2 instance? / How do you ensure that a VPC is created before an EC2 instance in AWS using Terraform ?
+=> To achieve high availability, I would deploy the application across at least two Availability Zones within the same Region. This ensures that if one Availability 
+Zone becomes unavailable, the application continues running from the other.
+I would place an Application Load Balancer (ALB) in front of the application. The ALB distributes incoming requests across EC2 instances registered in multiple 
+Target Groups and continuously performs health checks. If an instance becomes unhealthy, it automatically stops routing traffic to that instance.
+I would configure an Auto Scaling Group (ASG) across multiple Availability Zones so that instances are automatically launched or terminated based on demand or 
+instance health.
+For the database layer, I would use Amazon RDS Multi-AZ so that AWS can automatically fail over to the standby database if the primary database becomes unavailable.
+I would configure Route53 to direct users to the ALB and use health checks if multiple endpoints or Regions are involved.
+Finally, I would enable monitoring with CloudWatch, configure alarms for CPU, memory, disk, and application metrics, and integrate notifications with SNS so the 
+operations team is alerted immediately when thresholds are exceeded.
+
+- Let's take a scenario: I am creating an EC2 instance and attaching it to a VPC. How can I ensure the VPC is created first and then the EC2 instance? / 
+How do you ensure that a VPC is created before an EC2 instance in AWS using Terraform ?
+==> Terraform automatically creates resources in the correct order by analyzing resource references. For example, when I create an EC2 instance and reference 
+the VPC's subnet ID in the EC2 configuration, Terraform understands that the subnet and VPC must exist before the EC2 instance. This is called an implicit 
+dependency, and in most cases, I don't need to use depends_on.
+I use depends_on only when there is no direct resource reference but I still need Terraform to enforce a creation order.
 
 **Broadridge**
 - Let's takes example I have installed application in EC2 instance how you forward the log to the cloud watch ?
+==> To forward application logs from an EC2 instance to CloudWatch Logs, I would first attach an IAM Role to the EC2 instance with the CloudWatchAgentServerPolicy 
+or equivalent permissions.
+Next, I would install the Amazon CloudWatch Agent on the EC2 instance.
+Then, I would create or update the CloudWatch Agent configuration file and specify the application log file path, for example:
+/var/log/myapp/application.log
+Along with the log file path, I would define the CloudWatch Log Group, Log Stream name, and log retention settings.
+After the configuration is complete, I would start or restart the CloudWatch Agent. The agent continuously monitors the configured log file and pushes new log 
+entries to CloudWatch Logs.
+Finally, I would verify in the AWS Console that the Log Group and Log Stream are receiving the application logs.
+
 - Write a python programme which retrives ebs volume from AWS ?
+import boto3
+
+# Create EC2 client
+ec2 = boto3.client('ec2', region_name='us-east-2')
+
+# Retrieve EBS volumes
+response = ec2.describe_volumes()
+
+# Print details
+for volume in response['Volumes']:
+    print(f"Volume ID : {volume['VolumeId']}")
+    print(f"Size      : {volume['Size']} GB")
+    print(f"Type      : {volume['VolumeType']}")
+    print(f"State     : {volume['State']}")
+    print(f"AZ         : {volume['AvailabilityZone']}")
+    print("-" * 40)
+
 - How to take backup of EC2 instance through automation ?
-- How to send image to ECR on specific repository ? ---> docker push <account-id>.dkr.ecr.<region>.(link unavailable)<repository-name>:<image-tag>
+==> There are multiple ways to automate EC2 backups. The most common approach is to use AWS Backup or Amazon Data Lifecycle Manager (DLM). These services can 
+automatically create EBS snapshots or AMIs based on a schedule.
+
+- How to send image to ECR on specific repository ? 
+==> docker push <account-id>.dkr.ecr.<region>.(link unavailable)<repository-name>:<image-tag>
 
 **Maruti Tech Labs**
-- vpc end points ?
-- route53 - policy types and how we check health check ?
+- What is vpc end points ?
+==> A VPC Endpoint allows resources inside a VPC to privately access supported AWS services without requiring an Internet Gateway, NAT Gateway, VPN, 
+or Direct Connect. The traffic stays on the AWS private network, improving both security and performance.
+There are three types of VPC Endpoints:
+ * Gateway Endpoint – Used only for Amazon S3 and DynamoDB.
+ * Interface Endpoint – Uses AWS PrivateLink and creates Elastic Network Interfaces (ENIs) inside the VPC for services such as Secrets Manager, Systems Manager, 
+ * CloudWatch, and many others.
+ * Gateway Load Balancer Endpoint – Used to integrate third-party virtual appliances like firewalls and intrusion detection systems.
+
+- What is Route53 - policy types and how we check health check ?
+==> Route53 is a domain name service which helps us to create domains records like cname and a name. there are diff policy types 1. simple routing 2.latency routing 
+3.Geological routing 4.weighted routing 5.failover routing. route53 continously watches helth of insances via lb with target grops by using end points called health.
+
 - There are different env like dev and staging there are modules of each resource if i want run my ec2 with duplication on terraform shall i do that?
+==> yes you can do that by using modules and diff env. crrate module for ec2 in dule folder then go to env folder mention the valus in terraformtfvars and call it 
+and each env has its own state file so that in this way you can create duplicate resouces without any issue 
 
 **(Final section)**
 
