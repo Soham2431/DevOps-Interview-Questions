@@ -330,7 +330,7 @@ subnet does not have a route to an Internet Gateway, so its resources cannot be 
 access, they use a NAT Gateway. Typically, internet-facing resources like Load Balancers and Bastion Hosts are placed in public subnets, while application servers 
 and databases are placed in private subnets.
 
-- Private subnet has IGW or natGateway access ?
+- Private subnet has IGW or NatGateway access ?
 ==> NatGateway
 
 - What is the use of NatGateway and Internet gateway ?
@@ -339,26 +339,52 @@ A NAT Gateway, on the other hand, enables instances in a private subnet to initi
 from the internet. This allows private instances to download updates or access external services without being publicly accessible.
 
 **Valere Labs**
-
 - There is a Java application that needs to be deployed on an EC2 instance without using Docker or Kubernetes. How would you set up a Jenkins CI/CD pipeline?
 ==> I would configure Jenkins to trigger automatically on every code commit using a Git webhook. The pipeline would check out the code, build the application with 
 Maven, run unit tests, and optionally perform a SonarQube scan. For deployment, Jenkins would connect to the EC2 instance over SSH, copy the generated JAR file, 
 stop the existing application service, replace the old JAR, and restart the application using systemctl. Finally, I would verify the deployment by checking the 
 service status and performing a health check using curl or the application URL. This provides a fully automated CI/CD pipeline without using Docker or Kubernetes.
 
-- Suppose you are provisioning EC2, S3, and RDS using Terraform. What modules would you create, and what would the project structure look like?
+- Suppose you are provisioning EC2, S3, and RDS using Terraform. What modules would you create, and what would be the project structure look like?
 ==> I follow a modular Terraform structure. I create separate reusable modules for VPC, EC2, S3, RDS, Security Groups, IAM, ALB, and Route 53. Each module contains 
 its own main.tf, variables.tf, and outputs.tf. Then I create separate folders for Dev, QA,and Production, which simply call these modules with different variable 
 values. This avoids code duplication, improves maintainability, and follows the DRY principle.
 
 **HCL Tech**
-- if i want run specific commands during creation of ec2 how can do that with or without terraform
-- eks version u r using
-- s3 cores means
-- when we create LB what are the other componenets requred
-- what are the types of policies in dns 
-- how to transfer ebs from one zone to another
-- what is gateway load balancer
+- If I want to run specific commands during creation of ec2 how can I do that with or without terraform ?
+==> If I want to run specific commands during the creation of an EC2 instance using Terraform, I would use User Data. User Data allows me to provide a shell script 
+or cloud-init configuration that runs automatically during the first boot of the EC2 instance. It is commonly used to install packages, configure services, or 
+deploy applications.
+If I'm not using Terraform, I can create the EC2 instance through the AWS Console, CLI, or another automation tool and then use Ansible to connect to the instance 
+over SSH and perform the required configuration and software installation.
+
+- Which eks version you folks are using ?
+=> v1.36
+ 
+- What is s3 CORS means ?
+CORS (Cross-Origin Resource Sharing) is a mechanism that allows a web application hosted on one domain to access resources stored in an Amazon S3 bucket on another 
+domain.By default, browsers block cross-origin requests for security reasons. We configure a CORS policy on the S3 bucket to specify which origins, HTTP methods 
+(GET, PUT, POST, DELETE), and headers are allowed to access the bucket.
+
+- When we create LB what are the other componenets required ?
+==> To create an Application Load Balancer, I first need a VPC with at least two public subnets across different Availability Zones for high availability.
+The Load Balancer requires a Security Group to control inbound and outbound traffic.
+I then create one or more Target Groups, where the backend resources such as EC2 instances, ECS tasks, or IP addresses are registered.
+Next, I configure Listeners, for example on ports 80 or 443, along with Listener Rules to define how incoming requests are routed to different target groups.
+If I'm using EC2 instances, I typically place them in an Auto Scaling Group so the number of instances can automatically increase or decrease based on demand.
+Finally, I configure Health Checks so the Load Balancer sends traffic only to healthy targets. If HTTPS is required, I also attach an SSL/TLS certificate from 
+AWS Certificate Manager (ACM).
+
+- What are the types of policies in dns ?
+==> we have different types policies in dns for ex: simple routing for routing traffic on sinle ip , weighted routing for weight based routing , latency routing based
+on user near loaction, geological routing for geo location bases and failover routing for if primary fails then routing done secondary 
+
+- How to transfer ebs from one zone to another ?
+==> EBS volumes are Availability Zone specific, so they cannot be moved directly. To transfer ebs from one zone another fisrt we need to take snapshot of that ebs volume and then go to another zone & use that snapshot to create new ebs volume 
+in another zone.
+
+- What is gateway load balancer ?
+==> Gateway Load balcer act on L3/L4 layer based for third party application to access it securely via network. It handles GENEVE protocol. 
 
 **inferyx**
 - Write a Terraform configuration to provision an EC2 instance in a specific VPC and subnet, and attach a security group that allows SSH access.
@@ -367,7 +393,29 @@ values. This avoids code duplication, improves maintainability, and follows the 
 
 **Amdocs**
 - write terafform code for ec2 and provider as well?
+==> 
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
 
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-xxxxxxxx"
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-xxxxxxxx"
+
+  tags = {
+    Name = "instance-one"
+  }
+}
 **TSYS**
 - Let's say. I nave deployed API in Kubernetes... it is currently running in the AWS. That is a private. Your private VPC... A load balancer. You have created in 
 that is AWS component... Okay. Now let's say you have created a, what kind of Like in Route, 53 water. All the things, you will provide for that.
