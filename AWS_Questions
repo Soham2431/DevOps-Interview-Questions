@@ -502,12 +502,24 @@ There are three types of VPC Endpoints:
  * Gateway Load Balancer Endpoint – Used to integrate third-party virtual appliances like firewalls and intrusion detection systems.
 
 - What is Route53 - policy types and how we check health check ?
-==> Route53 is a domain name service which helps us to create domains records like cname and a name. there are diff policy types 1. simple routing 2.latency routing 
-3.Geological routing 4.weighted routing 5.failover routing. route53 continously watches helth of insances via lb with target grops by using end points called health.
+==> Amazon Route53 is AWS's highly available and scalable DNS service. It translates domain names into IP addresses or AWS resource endpoints such as an Application 
+Load Balancer.
+Route53 supports several routing policies:
+ * Simple Routing – Routes traffic to a single resource.
+ * Weighted Routing – Distributes traffic based on assigned weights.
+ * Latency Routing – Routes users to the Region with the lowest latency.
+ * Failover Routing – Routes traffic to a secondary endpoint if the primary becomes unhealthy.
+ * Geolocation Routing – Routes users based on their geographic location.
+ * Multivalue Answer Routing – Returns multiple healthy IP addresses.
+Route53 health checks continuously monitor an endpoint using HTTP, HTTPS, or TCP. If an endpoint becomes unhealthy, Route53 can stop returning that endpoint in DNS 
+responses or trigger failover, depending on the routing policy.
 
 - There are different env like dev and staging there are modules of each resource if i want run my ec2 with duplication on terraform shall i do that?
-==> yes you can do that by using modules and diff env. crrate module for ec2 in dule folder then go to env folder mention the valus in terraformtfvars and call it 
-and each env has its own state file so that in this way you can create duplicate resouces without any issue 
+==> I would create reusable Terraform modules for common resources such as EC2, VPC, and RDS. Then I would create separate environment folders, for example dev, 
+staging, and prod.
+Each environment would call the same module but pass different values through terraform.tfvars or environment-specific variable files. I would also maintain a 
+separate Terraform state file for each environment to avoid conflicts. This approach eliminates code duplication while allowing each environment to have its own 
+configuration.
 
 **(Final section)**
 
