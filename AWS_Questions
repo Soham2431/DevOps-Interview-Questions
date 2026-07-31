@@ -102,13 +102,10 @@ It keeps the traffic within the AWS network, making the communication more secur
 There are two main types: Gateway Endpoints for S3 and DynamoDB, and Interface Endpoints (AWS PrivateLink) for most other AWS services.
 
 - There is an S3 bucket in AWS Account A. How can an EC2 instance in AWS Account B access it?
-==> To allow an EC2 instance in Account B to access an S3 bucket in Account A, I would attach an IAM role to the EC2 instance and update the S3 bucket policy 
-in Account A to allow that IAM role to access the bucket. This provides secure cross-account access using temporary credentials and follows AWS security best 
-practices. For more complex scenarios, I can also use cross-account IAM role assumption with AWS STS.
-
-I would create an IAM role in Account A with the required S3 permissions and configure its trust policy to allow a role from Account B to assume it. Then, 
-I would attach an IAM role to the EC2 instance in Account B with permission to call sts:AssumeRole on the Account A role. The EC2 instance assumes the role, 
-receives temporary credentials from AWS STS, and uses those credentials to access the S3 bucket securely.
+==> Since the S3 bucket is in Account A, I would first create an IAM role in Account A and attach the required S3 permissions to that role. Then, I would configure 
+the role's trust policy to allow Account B to assume it.
+In Account B, I would attach an IAM role to the EC2 instance with permission to call sts:AssumeRole on the cross-account role in Account A. The EC2 instance uses 
+AWS STS to assume that role and receives temporary credentials, which it then uses to securely access the S3 bucket in Account A.
 
 - There is an EC2 which is in private subnets how will access it ? With SSM how will access like how you will configure it so we can able to do it in SSM?
 ==> To access a private EC2 instance using AWS Systems Manager, I would first ensure the SSM Agent is installed on the instance. Then I would attach an IAM role 
